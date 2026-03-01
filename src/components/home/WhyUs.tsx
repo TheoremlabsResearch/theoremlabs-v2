@@ -30,6 +30,8 @@ export function WhyUs() {
               width={700}
               height={500}
               className="w-full h-auto object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
             />
             {/* Subtle gradient overlay on bottom edge */}
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0F1B2D]/60 to-transparent pointer-events-none" />

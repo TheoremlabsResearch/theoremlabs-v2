@@ -14,11 +14,13 @@ export function Testimonial() {
                 width={48}
                 height={48}
                 unoptimized
+                sizes="48px"
+                loading="lazy"
               />
             </div>
 
             {/* Quote text */}
-            <blockquote className="text-xl font-light italic text-[#F8FAFC] leading-relaxed md:text-2xl lg:text-3xl">
+            <blockquote className="text-base font-light italic text-[#F8FAFC] leading-relaxed md:text-xl lg:text-2xl">
               &ldquo;It&apos;s going to be interesting to see how society deals
               with artificial intelligence, but it will definitely be
               cool.&rdquo;

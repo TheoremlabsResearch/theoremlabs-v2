@@ -80,6 +80,8 @@ export default function OurTeamPage() {
                     height={300}
                     alt={member.name}
                     className="w-full aspect-square object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-5 flex flex-col gap-2 flex-1">

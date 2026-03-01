@@ -58,20 +58,22 @@ const VALUE_CARDS: ValueCard[] = [
 function CardIcon({ card }: { card: ValueCard }) {
   if (card.iconType === 'lucide') {
     return (
-      <div className="w-16 h-16 flex items-center justify-center">
-        <MapPin className="w-10 h-10 text-[#F97316]" strokeWidth={1.5} aria-hidden="true" />
+      <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+        <MapPin className="w-8 h-8 md:w-10 md:h-10 text-[#F97316]" strokeWidth={1.5} aria-hidden="true" />
       </div>
     );
   }
 
   return (
-    <div className="w-16 h-16 flex items-center justify-center">
+    <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
       <Image
         src={card.imageSrc!}
         alt={card.title}
         width={64}
         height={64}
         className="object-contain"
+        sizes="(max-width: 768px) 48px, 64px"
+        loading="lazy"
       />
     </div>
   );

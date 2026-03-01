@@ -60,8 +60,10 @@ function ProductCard({ product }: ProductCardProps) {
         width={80}
         height={80}
         alt={product.name}
-        className="object-contain mb-4"
+        className="object-contain mb-4 w-16 h-16 sm:w-20 sm:h-20"
         unoptimized
+        sizes="(max-width: 640px) 64px, 80px"
+        loading="lazy"
       />
       <h3 className="text-lg font-semibold text-[#F8FAFC] mb-2">{product.name}</h3>
       <p className="text-sm text-[#94A3B8] leading-relaxed">{product.description}</p>
@@ -84,7 +86,7 @@ export function ProductsCarousel() {
           {products.slice(0, 3).map((product) => (
             <ProductCard key={product.name} product={product} />
           ))}
-          <div className="sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:w-2/3 lg:mx-auto">
+          <div className="sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:w-2/3 lg:mx-auto">
             {products.slice(3).map((product) => (
               <ProductCard key={product.name} product={product} />
             ))}

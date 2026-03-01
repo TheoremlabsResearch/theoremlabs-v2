@@ -8,7 +8,7 @@ export function KirdarFeatureBlock() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
-        <div className="h-[400px] w-[600px] rounded-full bg-[#F97316]/5 blur-3xl" />
+        <div className="h-[200px] w-[300px] rounded-full bg-[#F97316]/5 blur-3xl md:h-[400px] md:w-[600px]" />
       </div>
 
       {/* Content */}
@@ -21,7 +21,7 @@ export function KirdarFeatureBlock() {
         </span>
 
         {/* Headline */}
-        <h2 className="text-3xl font-bold text-[#F8FAFC] tracking-tight leading-tight mb-5 max-w-3xl md:text-4xl lg:text-5xl">
+        <h2 className="text-2xl font-bold text-[#F8FAFC] tracking-tight leading-tight mb-5 max-w-3xl md:text-4xl lg:text-5xl">
           The Revolution is Here
         </h2>
 

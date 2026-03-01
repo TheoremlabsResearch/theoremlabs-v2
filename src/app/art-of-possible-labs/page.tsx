@@ -125,6 +125,8 @@ export default function ArtOfPossibleLabsPage() {
                   height={480}
                   alt="Art of Possible Labs — Theoremlabs experimentation lab"
                   className="w-full h-auto object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0F1B2D]/60 to-transparent pointer-events-none" />
               </div>

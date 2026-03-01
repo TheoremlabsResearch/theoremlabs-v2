@@ -349,6 +349,8 @@ export default function AcceleratorsPage() {
                         height={64}
                         className="object-contain"
                         unoptimized
+                        sizes="64px"
+                        loading="lazy"
                       />
                     </div>
                   )}

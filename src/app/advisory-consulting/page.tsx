@@ -118,6 +118,7 @@ export default function AdvisoryConsultingPage() {
           fill
           className="object-cover object-center"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1B2D]/80 via-[#0F1B2D]/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B2D] via-transparent to-transparent" />

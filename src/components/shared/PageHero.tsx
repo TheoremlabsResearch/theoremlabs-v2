@@ -16,7 +16,7 @@ export function PageHero({ eyebrow, title, subtitle, align = 'left' }: PageHeroP
             {eyebrow}
           </span>
         )}
-        <h1 className="max-w-3xl text-3xl font-bold tracking-tight text-[#F8FAFC] sm:text-4xl md:text-5xl">
+        <h1 className="max-w-3xl text-2xl font-bold tracking-tight text-[#F8FAFC] sm:text-3xl md:text-5xl">
           {title}
         </h1>
         {subtitle && (

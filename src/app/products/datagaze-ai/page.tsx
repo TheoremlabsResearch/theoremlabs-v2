@@ -155,7 +155,7 @@ export default function DataGazeAIPage() {
                 key={stat.label}
                 className="flex flex-col gap-1 bg-[#1A2B45] px-6 py-8 text-center"
               >
-                <span className="text-3xl font-bold text-[#F97316] md:text-4xl">{stat.value}</span>
+                <span className="text-2xl font-bold text-[#F97316] md:text-3xl lg:text-4xl">{stat.value}</span>
                 <span className="text-xs text-[#94A3B8] leading-relaxed">{stat.label}</span>
               </div>
             ))}

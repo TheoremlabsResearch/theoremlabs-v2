@@ -50,6 +50,7 @@ export function Hero() {
           fill
           className="object-cover object-center"
           priority
+          sizes="100vw"
         />
       </div>
 
@@ -58,7 +59,7 @@ export function Hero() {
 
       {/* Floating decorative icon — top-right corner */}
       <motion.div
-        className="absolute top-24 right-6 sm:right-12 md:right-20 lg:right-32 z-10 pointer-events-none select-none"
+        className="absolute top-24 right-4 sm:right-8 md:right-16 lg:right-32 z-10 pointer-events-none select-none"
         variants={floatVariants}
         initial="initial"
         animate="animate"
@@ -70,6 +71,7 @@ export function Hero() {
           height={96}
           className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-70"
           priority
+          sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 96px"
         />
       </motion.div>
 
@@ -93,7 +95,7 @@ export function Hero() {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl font-bold text-[#F8FAFC] tracking-tight leading-[1.05] mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+            className="text-2xl font-bold text-[#F8FAFC] tracking-tight leading-[1.05] mb-6 sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
           >
             The new software era
           </motion.h1>

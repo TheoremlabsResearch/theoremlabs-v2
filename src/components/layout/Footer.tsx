@@ -11,6 +11,8 @@ const LINK_GROUPS: FooterLinkGroup[] = [
   {
     heading: 'Products',
     links: [
+      { label: 'PromptLine', href: '/products/promptline' },
+      { label: 'Tacit', href: '/products/tacit' },
       { label: 'Kirdar.ai', href: '/products/kirdar-ai' },
       { label: 'DataGaze.ai', href: '/products/datagaze-ai' },
       { label: 'Accelerators', href: '/products/accelerators' },
@@ -61,6 +63,8 @@ export function Footer() {
                 width={150}
                 height={38}
                 className="h-8 w-auto"
+                sizes="(max-width: 768px) 120px, 150px"
+                loading="lazy"
               />
             </Link>
 
