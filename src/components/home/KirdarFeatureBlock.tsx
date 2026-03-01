@@ -1,0 +1,47 @@
+import { CTAButton } from '@/components/shared/CTAButton';
+
+export function KirdarFeatureBlock() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#0F1B2D] via-[#1A2B45] to-[#0F1B2D] border-y border-[#F97316]/20">
+      {/* Decorative orange glow blob */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      >
+        <div className="h-[400px] w-[600px] rounded-full bg-[#F97316]/5 blur-3xl" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-16 flex flex-col items-center text-center">
+        {/* Eyebrow */}
+        <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-widest uppercase text-[#F97316] mb-5">
+          <span className="w-6 h-px bg-[#F97316]" />
+          Featured Product
+          <span className="w-6 h-px bg-[#F97316]" />
+        </span>
+
+        {/* Headline */}
+        <h2 className="text-3xl font-bold text-[#F8FAFC] tracking-tight leading-tight mb-5 max-w-3xl md:text-4xl lg:text-5xl">
+          The Revolution is Here
+        </h2>
+
+        {/* Subtext */}
+        <p className="text-base md:text-lg text-[#94A3B8] leading-relaxed max-w-2xl mb-10">
+          Kirdar.ai is an AI-powered employee training simulator that transforms
+          onboarding, role-play training, and skill gap analysis. Built for the
+          future of work.
+        </p>
+
+        {/* CTA buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <CTAButton href="/products/kirdar-ai" variant="primary">
+            Explore Kirdar.ai
+          </CTAButton>
+          <CTAButton href="/engage/contact" variant="secondary">
+            Book a Demo
+          </CTAButton>
+        </div>
+      </div>
+    </section>
+  );
+}
