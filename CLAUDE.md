@@ -6,12 +6,12 @@
 ## 🏢 Project Overview
 
 **Company:** Theoremlabs Partners LLC  
-**Website:** https://theoremlabs.io (current — WordPress, being replaced)  
-**New Stack:** Next.js 16 + Tailwind CSS v4 + Framer Motion
-**Goal:** Rebuild the website from scratch — same content/images initially,  
-then add new Innovation pages (Coding Loops, Latest AI Technologies)  
-**Deployment:** Vercel → custom domain theoremlabs.io  
-**Owner:** Shantanu Wadodkar (Co-Founder)
+**Website:** https://theoremlabs.io (custom domain, pending DNS cutover from WordPress)  
+**New Stack:** Next.js 16 + Tailwind CSS v4 + Framer Motion  
+**Goal:** Full website rebuild — all core pages complete; special showcase pages added  
+**Deployment:** Vercel (project: `theoremlabs-v2`, org: `shantanu-5767s-projects`)  
+**Vercel prod URL:** https://theoremlabs-v2-j10kk9jcg-shantanu-5767s-projects.vercel.app  
+**Owner:** Shantanu Wadodkar (Co-Founder, research@theoremlabs.io)
 
 ---
 
@@ -51,15 +51,25 @@ Pass = commit. Fail = fix, note in Mistakes section, retry.
 ```
 theoremlabs-v2/
 ├── CLAUDE.md
+├── scripts/
+│   └── generate-pdf.mjs                (generates PDF from slideshow page)
+├── theoremlabs-slideshow.pdf           (company overview presentation)
+├── 90SecsVideoBriefForTheoremlabs.pdf  (short video brief doc)
+├── Vantage Bank × Theoremlabs — UBPR Intelligence (1).pdf
 ├── src/
+│   ├── proxy.ts                        (site-wide password gate — Next.js 16 middleware)
 │   ├── app/
 │   │   ├── layout.tsx                  (Inter font, Navbar, Footer, pt-16 main)
 │   │   ├── page.tsx                    (Home — assembles all home sections)
 │   │   ├── globals.css                 (Tailwind v4 @theme, --font-inter)
+│   │   ├── login/page.tsx              ('use client' — password gate UI)
+│   │   ├── api/login/route.ts          (POST handler — validates password, sets tl_auth cookie)
 │   │   ├── about/
 │   │   │   ├── our-team/page.tsx
 │   │   │   └── partnerships/page.tsx
 │   │   ├── products/
+│   │   │   ├── promptline/page.tsx     (PromptLine — AI voice/text platform)
+│   │   │   ├── tacit/page.tsx          (Tacit — AI knowledge capture platform)
 │   │   │   ├── kirdar-ai/page.tsx
 │   │   │   ├── datagaze-ai/page.tsx
 │   │   │   └── accelerators/page.tsx
@@ -70,10 +80,16 @@ theoremlabs-v2/
 │   │   │   ├── coding-loops/layout.tsx (Server Component holding metadata)
 │   │   │   ├── ai-technologies/page.tsx ('use client' — metadata in layout.tsx)
 │   │   │   └── ai-technologies/layout.tsx
-│   │   └── engage/
-│   │       ├── workshops/page.tsx
-│   │       ├── become-a-partner/page.tsx
-│   │       └── contact/page.tsx        ('use client' — useState form)
+│   │   ├── engage/
+│   │   │   ├── workshops/page.tsx
+│   │   │   ├── become-a-partner/page.tsx
+│   │   │   └── contact/page.tsx        ('use client' — useState form)
+│   │   ├── slideshow/
+│   │   │   ├── page.tsx                ('use client' — company overview deck, auto-advance)
+│   │   │   └── layout.tsx              (metadata: "Company Overview")
+│   │   └── finzpire/
+│   │       ├── page.tsx                ('use client' — 90s animated motion graphic loop)
+│   │       └── layout.tsx              (metadata: "Theoremlabs · FinZpire 2026")
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── Navbar.tsx              ('use client', 2xl: breakpoint for desktop)
@@ -93,7 +109,36 @@ theoremlabs-v2/
 │   └── lib/
 │       └── utils.ts                    (exports cn() — clsx + tailwind-merge)
 └── public/
-    └── images/                         (23 images downloaded from WordPress)
+    └── images/
+        ├── logo.png                    (main logo)
+        ├── logo-white.png              (white logo variant)
+        ├── hero-bg.jpg                 (hero background)
+        ├── hero-icon.png               (hero icon)
+        ├── icon-battle-hardened.png
+        ├── icon-walk-talk.png
+        ├── icon-lean-agile.png
+        ├── icon-risk-literate.png
+        ├── icon-prime-location.png
+        ├── product-reconcile-ai.gif    (unoptimized)
+        ├── product-knowledge-pulse.gif (unoptimized)
+        ├── product-insight-bridge.gif  (unoptimized)
+        ├── product-synthetic-edge.gif  (unoptimized)
+        ├── product-prompt-line.gif     (unoptimized)
+        ├── product-insight-bridge-2.jpg
+        ├── team-wendie.png
+        ├── team-shantanu.png
+        ├── team-prashant.png
+        ├── team-will.png
+        ├── team-david.png
+        ├── team-jim.png
+        ├── separator.jpg
+        ├── quote.gif                   (unoptimized)
+        ├── about.gif                   (unoptimized)
+        ├── Accelerators.png            (section image)
+        ├── Advisory and Consulting.png
+        ├── Art of Possible Labs.png
+        ├── The New Software Era.png
+        └── Why Us and Team.png
 ```
 
 ---
@@ -180,12 +225,14 @@ About ▾
   └── Our Team
   └── Partnerships
 Products ▾
+  └── PromptLine           ← /products/promptline (NEW)
+  └── Tacit                ← /products/tacit (NEW)
   └── Kirdar.ai
   └── DataGaze.ai
   └── Accelerators
 Advisory & Consulting
 Art of Possible Labs
-Innovation ▾  ← NEW
+Innovation ▾
   └── Coding Loops
   └── AI Technologies
 Engage ▾
@@ -244,8 +291,11 @@ artificial intelligence, but it will definitely be cool." — Colin Angle, CEO o
 - **PromptLine** — Conversational AI phone/text accelerator
 
 ### Main Products
-- **Kirdar.ai** — Employee training simulator (role-play, onboarding, skill gaps)
-- **DataGaze.ai** — (fetch from /datagaze-ai page when building that page)
+- **PromptLine** — AI-powered conversational platform for financial services; intelligent voice and text interfaces for customer queries, case routing, and core banking integration (`/products/promptline`)
+- **Tacit** — AI knowledge capture platform; transforms expert tacit knowledge into structured, shareable learning for Fintech orgs (`/products/tacit`)
+- **Kirdar.ai** — Employee training simulator (role-play, onboarding, skill gaps) (`/products/kirdar-ai`)
+- **DataGaze.ai** — Data observability product (`/products/datagaze-ai`)
+- **Prahari** — Compliance sentinel product (shown in FinZpire showcase — "Every agent. Every transaction. Every regulation. Watched." — no dedicated page yet)
 
 ---
 
@@ -275,6 +325,29 @@ artificial intelligence, but it will definitely be cool." — Colin Angle, CEO o
 - Updated quarterly — note "Last updated: Q1 2026"
 
 **Visuals:** Card-based layout, tech stack logos, animated counters
+
+---
+
+## 🔒 Password Gate (Site-Wide Auth)
+
+The entire site is protected by a cookie-based password gate implemented in `src/proxy.ts` (Next.js 16 middleware).
+
+- **Default password:** `Theoremlabs` (override via `SITE_PASSWORD` env var on Vercel)
+- **Cookie:** `tl_auth` — httpOnly, 7-day expiry, `sameSite: lax`
+- **Login page:** `/login` (redirects back to original URL after auth via `?from=` param)
+- **API route:** `POST /api/login` — validates password, sets cookie, returns redirect destination
+- **Bypassed paths:** `/_next/static`, `/_next/image`, `/favicon.ico`, `/images/*`
+- To change the password in production: set `SITE_PASSWORD` in Vercel environment variables
+
+---
+
+## 🎬 Special Pages (Not in Main Nav)
+
+### `/slideshow`
+Company overview deck — auto-advancing slideshow built with Framer Motion. Used for presentations and investor/partner meetings. Generated as PDF via `scripts/generate-pdf.mjs` → `theoremlabs-slideshow.pdf`.
+
+### `/finzpire`
+90-second seamless animated motion graphic built for the **FinZpire 2026** conference in Charlotte, NC. Loops through scenes: intro act → PromptLine → Tacit → Prahari → 5 stat cards → CTA. Uses amber accent (`#D4840A`) on black (`#111111`) — different design language from the main site (stealth mono theme). No navbar or footer.
 
 ---
 
@@ -325,9 +398,9 @@ Website: theoremlabs.io
 - [x] Loop 15 — Innovation: AI Technologies page (NEW)
 - [x] Loop 16 — Engage pages (Workshops, Partner, Contact)
 - [x] Loop 17 — Partnerships page
-- [ ] Loop 18 — Mobile polish pass (all pages)
-- [ ] Loop 19 — Performance audit (images, fonts, lazy loading)
-- [ ] Loop 20 — Deploy to Vercel + domain setup
+- [x] Loop 18 — Mobile polish pass (all pages)
+- [x] Loop 19 — Performance audit (images, fonts, lazy loading)
+- [x] Loop 20 — Deploy to Vercel (deployed; DNS cutover to theoremlabs.io pending)
 
 ---
 
