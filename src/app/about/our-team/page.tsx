@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/shared/PageHero';
+import { SectionHeader } from '@/components/shared/SectionHeader';
 import { CTAButton } from '@/components/shared/CTAButton';
 
 export const metadata: Metadata = {
   title: 'Our Team | Theoremlabs',
   description:
-    'Meet the experienced leaders and innovators driving Theoremlabs — a team united by a passion for AI, entrepreneurship, and building the next generation of founders.',
+    'Meet the experienced leaders and innovators driving Theoremlabs - a team united by a passion for AI, entrepreneurship, and building the next generation of founders.',
 };
 
 interface TeamMember {
@@ -57,7 +58,7 @@ const teamMembers: TeamMember[] = [
 
 export default function OurTeamPage() {
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       <PageHero
         eyebrow="About"
         title="Meet Our Team"
@@ -71,7 +72,7 @@ export default function OurTeamPage() {
             {teamMembers.map((member) => (
               <li
                 key={member.name}
-                className="bg-[#1A2B45] border border-[#1E3A5F] rounded-xl overflow-hidden flex flex-col"
+                className="bg-card border border-border rounded-xl overflow-hidden flex flex-col"
               >
                 <div className="relative w-full aspect-square">
                   <Image
@@ -85,11 +86,11 @@ export default function OurTeamPage() {
                   />
                 </div>
                 <div className="p-5 flex flex-col gap-2 flex-1">
-                  <p className="text-lg font-semibold text-[#F8FAFC] leading-snug">
+                  <p className="text-lg font-semibold text-foreground leading-snug">
                     {member.name}
                   </p>
-                  <p className="text-sm text-[#F97316] font-medium">{member.title}</p>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-1">{member.bio}</p>
+                  <p className="text-sm text-primary font-medium">{member.title}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mt-1">{member.bio}</p>
                 </div>
               </li>
             ))}
@@ -98,17 +99,16 @@ export default function OurTeamPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-[#1E3A5F]">
-        <div className="max-w-7xl mx-auto text-center flex flex-col items-center gap-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">
-            Work with this team
-          </h2>
-          <p className="text-[#94A3B8] text-lg max-w-xl">
-            Ready to build something extraordinary? We&apos;d love to hear from you.
-          </p>
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-border">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+          <SectionHeader
+            title="Work with this team"
+            subtitle="Ready to build something extraordinary? We'd love to hear from you."
+            align="center"
+          />
           <CTAButton href="/engage/contact">Get in Touch</CTAButton>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

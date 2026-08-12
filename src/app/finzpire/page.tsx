@@ -424,7 +424,7 @@ export default function FinzpirePage() {
 
   return (
     <div
-      className="fixed inset-0 overflow-hidden select-none cursor-none"
+      className="fixed inset-0 z-[9999] overflow-hidden select-none cursor-none"
       style={{ backgroundColor: BG, fontFamily: "'Inter', sans-serif" }}
     >
       {/* Act label — top left, very subtle */}

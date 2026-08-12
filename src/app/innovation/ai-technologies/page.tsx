@@ -64,22 +64,22 @@ const aiModels: ModelItem[] = [
 
 const fintechFocusItems: FintechFocusItem[] = [
   {
-    icon: <ShieldCheck className="h-5 w-5 text-[#F97316]" />,
+    icon: <ShieldCheck className="h-5 w-5 text-primary" />,
     title: 'Fraud Detection & AML',
     description: 'Real-time pattern recognition across transaction streams.',
   },
   {
-    icon: <TrendingUp className="h-5 w-5 text-[#F97316]" />,
+    icon: <TrendingUp className="h-5 w-5 text-primary" />,
     title: 'Regulatory Compliance',
     description: 'Automated monitoring and reporting with explainable AI.',
   },
   {
-    icon: <Users className="h-5 w-5 text-[#F97316]" />,
+    icon: <Users className="h-5 w-5 text-primary" />,
     title: 'Customer Intelligence',
     description: 'Personalization at scale using behavioral AI.',
   },
   {
-    icon: <Bot className="h-5 w-5 text-[#F97316]" />,
+    icon: <Bot className="h-5 w-5 text-primary" />,
     title: 'Operational Automation',
     description: 'Back-office workflow automation with AI agents.',
   },
@@ -111,31 +111,31 @@ function CategoryCard({
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       variants={fadeUpVariant}
-      className="rounded-2xl border border-[#1E3A5F] bg-[#1A2B45] p-6 md:p-8"
+      className="rounded-2xl border border-border bg-card p-6 md:p-8"
     >
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
           {icon}
         </div>
-        <h3 className="text-lg font-semibold text-[#F8FAFC]">{title}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
       </div>
-      <div className="text-sm leading-relaxed text-[#94A3B8]">{content}</div>
+      <div className="text-sm leading-relaxed text-muted-foreground">{content}</div>
     </motion.div>
   );
 }
 
 function ModelBadge({ name, description }: ModelItem) {
   return (
-    <div className="rounded-xl border border-[#1E3A5F] bg-[#0F1B2D] p-4">
-      <p className="mb-1 text-sm font-semibold text-[#F8FAFC]">{name}</p>
-      <p className="text-xs leading-relaxed text-[#94A3B8]">{description}</p>
+    <div className="rounded-xl border border-border bg-background p-4">
+      <p className="mb-1 text-sm font-semibold text-foreground">{name}</p>
+      <p className="text-xs leading-relaxed text-muted-foreground">{description}</p>
     </div>
   );
 }
 
 function Pill({ label }: { label: string }) {
   return (
-    <span className="inline-block rounded-full border border-[#1E3A5F] bg-[#0F1B2D] px-3 py-1 text-xs font-medium text-[#94A3B8]">
+    <span className="inline-block rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
       {label}
     </span>
   );
@@ -143,8 +143,8 @@ function Pill({ label }: { label: string }) {
 
 function InsightCallout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-4 rounded-lg border border-[#F97316]/30 bg-[#F97316]/5 px-4 py-3">
-      <p className="text-xs leading-relaxed text-[#F97316]">{children}</p>
+    <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3">
+      <p className="text-xs leading-relaxed text-primary">{children}</p>
     </div>
   );
 }
@@ -155,7 +155,7 @@ export default function AITechnologiesPage() {
   const categories: (CategoryCard & { index: number })[] = [
     {
       index: 0,
-      icon: <Brain className="h-5 w-5 text-[#F97316]" />,
+      icon: <Brain className="h-5 w-5 text-primary" />,
       title: 'AI Model Landscape',
       content: (
         <div className="flex flex-col gap-3">
@@ -167,7 +167,7 @@ export default function AITechnologiesPage() {
     },
     {
       index: 1,
-      icon: <Network className="h-5 w-5 text-[#F97316]" />,
+      icon: <Network className="h-5 w-5 text-primary" />,
       title: 'Agentic AI Frameworks',
       content: (
         <>
@@ -189,13 +189,13 @@ export default function AITechnologiesPage() {
     },
     {
       index: 2,
-      icon: <Plug className="h-5 w-5 text-[#F97316]" />,
+      icon: <Plug className="h-5 w-5 text-primary" />,
       title: 'MCP (Model Context Protocol)',
       content: (
         <>
           <div className="mb-3 space-y-2">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#F97316]">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                 What it is
               </span>
               <p className="mt-1">
@@ -205,16 +205,16 @@ export default function AITechnologiesPage() {
               </p>
             </div>
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#F97316]">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                 Why it matters
               </span>
               <p className="mt-1">
-                Makes AI agents interoperable across tools — the &ldquo;USB
+                Makes AI agents interoperable across tools - the &ldquo;USB
                 standard&rdquo; for AI integrations.
               </p>
             </div>
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#F97316]">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                 Fintech use cases
               </span>
               <p className="mt-1">
@@ -228,7 +228,7 @@ export default function AITechnologiesPage() {
     },
     {
       index: 3,
-      icon: <Database className="h-5 w-5 text-[#F97316]" />,
+      icon: <Database className="h-5 w-5 text-primary" />,
       title: 'RAG (Retrieval Augmented Generation)',
       content: (
         <>
@@ -243,7 +243,7 @@ export default function AITechnologiesPage() {
             </li>
           </ul>
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#F97316]">
+            <span className="text-xs font-semibold uppercase tracking-wide text-primary">
               Critical for
             </span>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -261,7 +261,7 @@ export default function AITechnologiesPage() {
     },
     {
       index: 4,
-      icon: <FlaskConical className="h-5 w-5 text-[#F97316]" />,
+      icon: <FlaskConical className="h-5 w-5 text-primary" />,
       title: 'Synthetic Data Generation',
       content: (
         <>
@@ -270,7 +270,7 @@ export default function AITechnologiesPage() {
             real financial datasets.
           </p>
           <div className="mb-4">
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#F97316]">
+            <span className="text-xs font-semibold uppercase tracking-wide text-primary">
               Use cases
             </span>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -283,11 +283,11 @@ export default function AITechnologiesPage() {
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-2 rounded-lg border border-[#F97316]/30 bg-[#F97316]/5 px-4 py-3">
-            <span className="text-xs font-semibold text-[#F97316]">
+          <div className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3">
+            <span className="text-xs font-semibold text-primary">
               Theoremlabs accelerator:
             </span>
-            <span className="text-xs font-bold text-[#F8FAFC]">
+            <span className="text-xs font-bold text-foreground">
               SyntheticEdge
             </span>
           </div>
@@ -297,7 +297,7 @@ export default function AITechnologiesPage() {
   ];
 
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       {/* Hero */}
       <PageHero
         eyebrow="Innovation"
@@ -306,9 +306,9 @@ export default function AITechnologiesPage() {
       />
 
       {/* Last Updated Badge */}
-      <div className="px-4 md:px-8 lg:px-16 py-6 border-b border-[#1E3A5F]">
+      <div className="px-4 md:px-8 lg:px-16 py-6 border-b border-border">
         <div className="max-w-7xl mx-auto">
-          <span className="bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/30 rounded-full px-3 py-1 text-xs font-medium">
+          <span className="bg-primary/10 text-primary border border-primary/30 rounded-full px-3 py-1 text-xs font-medium">
             Last Updated: Q1 2026
           </span>
         </div>
@@ -344,29 +344,29 @@ export default function AITechnologiesPage() {
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
               variants={fadeUpVariant}
-              className="col-span-1 rounded-2xl border border-[#1E3A5F] bg-[#1A2B45] p-6 md:col-span-2 md:p-8 xl:col-span-3"
+              className="col-span-1 rounded-2xl border border-border bg-card p-6 md:col-span-2 md:p-8 xl:col-span-3"
             >
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10">
-                  <TrendingUp className="h-5 w-5 text-[#F97316]" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                  <TrendingUp className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-[#F8FAFC]">
-                  AI in Fintech — Theoremlabs Focus Areas
+                <h3 className="text-lg font-semibold text-foreground">
+                  AI in Fintech - Theoremlabs Focus Areas
                 </h3>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {fintechFocusItems.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-[#1E3A5F] bg-[#0F1B2D] p-4"
+                    className="rounded-xl border border-border bg-background p-4"
                   >
-                    <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-[#F97316]/10">
+                    <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
                       {item.icon}
                     </div>
-                    <p className="mb-1 text-sm font-semibold text-[#F8FAFC]">
+                    <p className="mb-1 text-sm font-semibold text-foreground">
                       {item.title}
                     </p>
-                    <p className="text-xs leading-relaxed text-[#94A3B8]">
+                    <p className="text-xs leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
@@ -378,7 +378,7 @@ export default function AITechnologiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-border">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -386,21 +386,17 @@ export default function AITechnologiesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className={cn(
-              'rounded-2xl border border-[#1E3A5F] bg-[#1A2B45]',
+              'rounded-2xl border border-border bg-card',
               'px-8 py-12 md:px-16 md:py-16',
-              'flex flex-col items-center gap-6 text-center'
+              'flex flex-col items-center gap-6'
             )}
           >
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
-              Get Started
-            </span>
-            <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-[#F8FAFC] md:text-4xl">
-              Ready to apply these technologies in your organization?
-            </h2>
-            <p className="max-w-xl text-base leading-relaxed text-[#94A3B8]">
-              Theoremlabs works with Fintech leaders to evaluate, pilot, and
-              scale AI capabilities that deliver measurable business outcomes.
-            </p>
+            <SectionHeader
+              eyebrow="Get Started"
+              title="Ready to apply these technologies in your organization?"
+              subtitle="Theoremlabs works with Fintech leaders to evaluate, pilot, and scale AI capabilities that deliver measurable business outcomes."
+              align="center"
+            />
             <CTAButton href="/engage/contact" className="gap-2">
               Talk to Theoremlabs
               <ArrowRight className="h-4 w-4" />
@@ -408,6 +404,6 @@ export default function AITechnologiesPage() {
           </motion.div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -9,32 +9,19 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.18,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
       ease: [0.25, 0.46, 0.45, 0.94] as const,
-    },
-  },
-};
-
-const floatVariants = {
-  initial: { y: 0, opacity: 0.85 },
-  animate: {
-    y: [-10, 10, -10],
-    opacity: [0.85, 1, 0.85],
-    transition: {
-      duration: 5,
-      repeat: Infinity,
-      ease: 'easeInOut' as const,
     },
   },
 };
@@ -55,25 +42,7 @@ export function Hero() {
       </div>
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0F1B2D]/80 to-[#0F1B2D]/60" />
-
-      {/* Floating decorative icon — top-right corner */}
-      <motion.div
-        className="absolute top-24 right-4 sm:right-8 md:right-16 lg:right-32 z-10 pointer-events-none select-none"
-        variants={floatVariants}
-        initial="initial"
-        animate="animate"
-      >
-        <Image
-          src="/images/hero-icon.png"
-          alt=""
-          width={96}
-          height={96}
-          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-70"
-          priority
-          sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 96px"
-        />
-      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/60" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full py-20 px-4 md:px-8 lg:px-16">
@@ -85,17 +54,17 @@ export function Hero() {
         >
           {/* Eyebrow badge */}
           <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-widest uppercase text-[#F97316] mb-6">
-              <span className="w-6 h-px bg-[#F97316]" />
+            <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-widest uppercase text-primary mb-6">
+              <span className="w-6 h-px bg-primary" />
               AI&nbsp;&middot;&nbsp;Fintech&nbsp;&middot;&nbsp;Innovation
-              <span className="w-6 h-px bg-[#F97316]" />
+              <span className="w-6 h-px bg-primary" />
             </span>
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-2xl font-bold text-[#F8FAFC] tracking-tight leading-[1.05] mb-6 sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
+            className="text-2xl font-bold text-foreground tracking-tight leading-[1.05] mb-6 sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
           >
             The new software era
           </motion.h1>
@@ -103,7 +72,7 @@ export function Hero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-[#94A3B8] leading-relaxed max-w-2xl mb-10"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10"
           >
             Theoremlabs is a hybrid of management consulting, build &amp;
             experimentation labs for Fintech products that apply advances in
@@ -126,7 +95,7 @@ export function Hero() {
       </div>
 
       {/* Subtle bottom fade into page background */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0F1B2D] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }

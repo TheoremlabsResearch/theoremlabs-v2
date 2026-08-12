@@ -6,6 +6,7 @@ interface CTAButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
   className?: string;
+  onClick?: () => void;
 }
 
 export function CTAButton({
@@ -13,15 +14,17 @@ export function CTAButton({
   children,
   variant = 'primary',
   className,
+  onClick,
 }: CTAButtonProps) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={cn(
         'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-colors duration-200',
         variant === 'primary'
-          ? 'bg-[#F97316] text-white hover:bg-[#ea6a0a] active:bg-[#d45e08]'
-          : 'border border-[#1E3A5F] text-[#F8FAFC] hover:border-[#F97316] hover:text-[#F97316]',
+          ? 'bg-primary text-white hover:bg-[#ea6a0a] active:bg-[#d45e08]'
+          : 'border border-border text-foreground hover:border-primary hover:text-primary',
         className
       )}
     >

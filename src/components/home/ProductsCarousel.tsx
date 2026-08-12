@@ -1,42 +1,42 @@
-import Image from 'next/image';
+import { Scale, BookOpen, Database, Sparkles, Phone } from 'lucide-react';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { CTAButton } from '@/components/shared/CTAButton';
 import { cn } from '@/lib/utils';
 
 interface Product {
   name: string;
-  image: string;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   description: string;
 }
 
 const products: Product[] = [
   {
     name: 'ReconcileAI',
-    image: '/images/product-reconcile-ai.gif',
+    icon: Scale,
     description:
       'AI-powered reconciliation accelerator. Automates complex financial reconciliation workflows with intelligent exception handling.',
   },
   {
     name: 'KnowledgePulse',
-    image: '/images/product-knowledge-pulse.gif',
+    icon: BookOpen,
     description:
       'AI-driven internal knowledge resource accelerator. Makes institutional knowledge instantly searchable and actionable.',
   },
   {
     name: 'InsightBridge',
-    image: '/images/product-insight-bridge.gif',
+    icon: Database,
     description:
       'Legacy system knowledge extraction accelerator. Extracts and modernizes knowledge trapped in aging systems.',
   },
   {
     name: 'SyntheticEdge',
-    image: '/images/product-synthetic-edge.gif',
+    icon: Sparkles,
     description:
       'Synthetic data generation accelerator. Generate realistic financial data for testing without compliance risk.',
   },
   {
     name: 'PromptLine',
-    image: '/images/product-prompt-line.gif',
+    icon: Phone,
     description:
       'Conversational AI phone/text accelerator. Intelligent voice and text interfaces for financial services.',
   },
@@ -47,26 +47,20 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product }: ProductCardProps) {
+  const Icon = product.icon;
   return (
     <div
       className={cn(
-        'bg-[#1A2B45] border border-[#1E3A5F] rounded-xl p-6',
+        'bg-card border border-border rounded-xl p-6',
         'hover:-translate-y-1 transition-transform duration-200',
-        'hover:border-[#F97316]/30'
+        'hover:border-primary/30'
       )}
     >
-      <Image
-        src={product.image}
-        width={80}
-        height={80}
-        alt={product.name}
-        className="object-contain mb-4 w-16 h-16 sm:w-20 sm:h-20"
-        unoptimized
-        sizes="(max-width: 640px) 64px, 80px"
-        loading="lazy"
-      />
-      <h3 className="text-lg font-semibold text-[#F8FAFC] mb-2">{product.name}</h3>
-      <p className="text-sm text-[#94A3B8] leading-relaxed">{product.description}</p>
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+        <Icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
+      </div>
+      <h3 className="text-lg font-semibold text-foreground mb-2">{product.name}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{product.description}</p>
     </div>
   );
 }

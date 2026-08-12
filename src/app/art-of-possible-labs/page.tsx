@@ -72,13 +72,13 @@ const buildCards: BuildCard[] = [
   {
     title: 'Customer-Facing Features',
     description:
-      'Tested, deployable features your end-users actually interact with — not wireframes, working software.',
+      'Tested, deployable features your end-users actually interact with - not wireframes, working software.',
   },
 ];
 
 export default function ArtOfPossibleLabsPage() {
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       {/* Hero */}
       <PageHero
         eyebrow="Innovation"
@@ -97,19 +97,19 @@ export default function ArtOfPossibleLabsPage() {
                 title="What Are the Labs?"
                 align="left"
               />
-              <p className="text-[#94A3B8] text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 Art of Possible Labs is a focused, time-boxed sprint environment where your team
-                and Theoremlabs engineers co-create and stress-test real solutions — together. No
+                and Theoremlabs engineers co-create and stress-test real solutions - together. No
                 lengthy discovery phases. No bloated SOWs. Just a structured cadence designed to
                 compress months of deliberation into weeks of tangible progress.
               </p>
-              <p className="text-[#94A3B8] text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 The Labs exist at the intersection of strategy and execution. We bring deep Fintech
                 domain knowledge, modern AI and data engineering capability, and the discipline to
                 ship something real. You bring the problem, the context, and the people closest to
-                the challenge. Together, we find out what&apos;s actually possible — fast.
+                the challenge. Together, we find out what&apos;s actually possible - fast.
               </p>
-              <p className="text-[#94A3B8] text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 Every Lab engagement ends with a working artifact: code you own, insights you can
                 act on, and a validated signal on whether to scale, pivot, or park the idea. No
                 ambiguity. No wasted cycles.
@@ -118,17 +118,17 @@ export default function ArtOfPossibleLabsPage() {
 
             {/* Hero Image */}
             <div className="flex flex-shrink-0 items-center justify-center md:w-2/5">
-              <div className="relative overflow-hidden rounded-2xl border border-[#1E3A5F] w-full">
+              <div className="relative overflow-hidden rounded-2xl border border-border w-full">
                 <Image
                   src="/images/Art%20of%20Possible%20Labs.png"
                   width={600}
                   height={480}
-                  alt="Art of Possible Labs — Theoremlabs experimentation lab"
+                  alt="Art of Possible Labs - Theoremlabs experimentation lab"
                   className="w-full h-auto object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   loading="lazy"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0F1B2D]/60 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/60 to-transparent pointer-events-none" />
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function ArtOfPossibleLabsPage() {
       </section>
 
       {/* How Labs Work — 3-Phase Process */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-border">
         <div className="max-w-7xl mx-auto flex flex-col gap-14">
           <SectionHeader
             eyebrow="The Process"
@@ -150,29 +150,29 @@ export default function ArtOfPossibleLabsPage() {
               <div
                 key={phase.number}
                 className={cn(
-                  'relative flex flex-col gap-5 rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-8',
-                  'transition-colors duration-200 hover:border-[#F97316]'
+                  'relative flex flex-col gap-5 rounded-xl bg-card border border-border p-8',
+                  'transition-colors duration-200 hover:border-primary'
                 )}
               >
                 {/* Connector line between cards (desktop only) */}
                 {index < phases.length - 1 && (
-                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-[#1E3A5F] z-10" />
+                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-border z-10" />
                 )}
 
-                <span className="text-5xl font-black text-[#1E3A5F] leading-none select-none">
+                <span className="text-5xl font-black text-border leading-none select-none">
                   {phase.number}
                 </span>
 
                 <div className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                     Phase {phase.number}
                   </span>
-                  <h3 className="text-xl font-bold text-[#F8FAFC] tracking-tight">
+                  <h3 className="text-xl font-bold text-foreground tracking-tight">
                     {phase.name}
                   </h3>
                 </div>
 
-                <p className="text-[#94A3B8] text-sm leading-relaxed">{phase.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{phase.description}</p>
               </div>
             ))}
           </div>
@@ -180,12 +180,12 @@ export default function ArtOfPossibleLabsPage() {
       </section>
 
       {/* What We Build In Labs */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-border">
         <div className="max-w-7xl mx-auto flex flex-col gap-14">
           <SectionHeader
             eyebrow="Deliverables"
             title="What We Build In Labs"
-            subtitle="Labs produce real, working software — not reports. Here is the range of artifacts we routinely deliver within a single engagement."
+            subtitle="Labs produce real, working software - not reports. Here is the range of artifacts we routinely deliver within a single engagement."
             align="center"
           />
 
@@ -194,16 +194,16 @@ export default function ArtOfPossibleLabsPage() {
               <div
                 key={card.title}
                 className={cn(
-                  'flex flex-col gap-3 rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-6',
-                  'transition-colors duration-200 hover:border-[#F97316]'
+                  'flex flex-col gap-3 rounded-xl bg-card border border-border p-6',
+                  'transition-colors duration-200 hover:border-primary'
                 )}
               >
                 {/* Orange accent bar */}
-                <span className="block h-0.5 w-8 rounded-full bg-[#F97316]" />
-                <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight">
+                <span className="block h-0.5 w-8 rounded-full bg-primary" />
+                <h3 className="text-base font-bold text-foreground tracking-tight">
                   {card.title}
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">{card.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
               </div>
             ))}
           </div>
@@ -211,25 +211,21 @@ export default function ArtOfPossibleLabsPage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-t border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-10 md:p-16 text-center flex flex-col items-center gap-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
-              Get Started
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#F8FAFC] max-w-2xl">
-              Ready to find out what&apos;s possible?
-            </h2>
-            <p className="text-[#94A3B8] text-base leading-relaxed max-w-xl">
-              Bring us your hardest Fintech challenge. In a single Lab engagement we will scope it,
-              build it, and validate it — so you know exactly what to do next.
-            </p>
+          <div className="rounded-xl bg-card border border-border p-10 md:p-16 flex flex-col items-center gap-6">
+            <SectionHeader
+              eyebrow="Get Started"
+              title="Ready to find out what's possible?"
+              subtitle="Bring us your hardest Fintech challenge. In a single Lab engagement we will scope it, build it, and validate it - so you know exactly what to do next."
+              align="center"
+            />
             <CTAButton href="/engage/contact" variant="primary" className="mt-2 px-8 py-4 text-base">
               Start a Lab Engagement
             </CTAButton>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

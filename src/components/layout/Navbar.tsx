@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { CTAButton } from '@/components/shared/CTAButton';
+import { Logo } from '@/components/shared/Logo';
 
 interface NavChild {
   label: string;
@@ -80,7 +81,7 @@ function DesktopDropdown({ item }: DesktopDropdownProps) {
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className="flex items-center gap-1 text-[13px] text-[#F8FAFC] hover:text-[#F97316] transition-colors duration-200 whitespace-nowrap"
+        className="flex items-center gap-1 text-[12.5px] xl:text-[13px] text-foreground hover:text-primary transition-colors duration-200 whitespace-nowrap"
         aria-expanded={open}
         aria-haspopup="true"
       >
@@ -103,12 +104,12 @@ function DesktopDropdown({ item }: DesktopDropdownProps) {
             transition={{ duration: 0.15 }}
             className="absolute left-0 top-full pt-3 z-50"
           >
-            <div className="min-w-[210px] bg-[#1A2B45] border border-[#1E3A5F] rounded-lg overflow-hidden shadow-2xl">
+            <div className="min-w-[210px] bg-card border border-border rounded-lg overflow-hidden shadow-2xl">
               {item.children?.map((child) => (
                 <Link
                   key={child.href}
                   href={child.href}
-                  className="block px-4 py-3 text-sm text-[#F8FAFC] hover:bg-[#0F1B2D] hover:text-[#F97316] transition-colors duration-150 border-b border-[#1E3A5F] last:border-b-0"
+                  className="block px-4 py-3 text-sm text-foreground hover:bg-background hover:text-primary transition-colors duration-150 border-b border-border last:border-b-0"
                 >
                   {child.label}
                 </Link>
@@ -157,26 +158,18 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-[#0F1B2D]/95 backdrop-blur-md shadow-lg border-b border-[#1E3A5F]'
-            : 'bg-[#0F1B2D] border-b border-[#1E3A5F]/50'
+            ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border'
+            : 'bg-background border-b border-border/50'
         )}
       >
-        <nav className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 h-16 flex items-center justify-between gap-6">
+        <nav className="max-w-7xl mx-auto px-4 md:px-8 lg:px-5 xl:px-16 h-16 flex items-center justify-between gap-3 xl:gap-6">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0" aria-label="Theoremlabs home">
-            <Image
-              src="/images/logo.png"
-              alt="Theoremlabs"
-              width={160}
-              height={40}
-              priority
-              className="h-8 w-auto"
-              sizes="(max-width: 640px) 128px, 160px"
-            />
+            <Logo priority />
           </Link>
 
-          {/* Desktop nav — shown at 2xl (1536px+) where all items fit */}
-          <div className="hidden 2xl:flex items-center gap-5 flex-1 justify-center">
+          {/* Desktop nav — shown at lg (1024px+), so only tablets/phones get the hamburger */}
+          <div className="hidden lg:flex items-center gap-2.5 xl:gap-3.5 flex-1 justify-center">
             {NAV_ITEMS.map((item) =>
               item.children ? (
                 <DesktopDropdown key={item.label} item={item} />
@@ -184,7 +177,7 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href!}
-                  className="text-[13px] text-[#F8FAFC] hover:text-[#F97316] transition-colors duration-200 whitespace-nowrap"
+                  className="text-[12.5px] xl:text-[13px] text-foreground hover:text-primary transition-colors duration-200 whitespace-nowrap"
                 >
                   {item.label}
                 </Link>
@@ -194,14 +187,15 @@ export function Navbar() {
 
           {/* CTA + hamburger */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link
+            <CTAButton
               href="/engage/contact"
-              className="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-[#F97316] text-white text-sm font-semibold hover:bg-[#ea6a0a] active:bg-[#d45e08] transition-colors duration-200"
+              variant="primary"
+              className="hidden sm:inline-flex px-4 py-2"
             >
               Let&apos;s Talk
-            </Link>
+            </CTAButton>
             <button
-              className="2xl:hidden p-2 text-[#F8FAFC] hover:text-[#F97316] transition-colors duration-200"
+              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors duration-200"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileOpen}
@@ -222,7 +216,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/40 2xl:hidden"
+              className="fixed inset-0 z-40 bg-black/40 lg:hidden"
               onClick={closeMobileMenu}
               aria-hidden="true"
             />
@@ -233,15 +227,15 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="fixed top-16 left-0 right-0 z-40 bg-[#0F1B2D] border-b border-[#1E3A5F] overflow-y-auto max-h-[calc(100vh-4rem)] 2xl:hidden"
+              className="fixed top-16 left-0 right-0 z-40 bg-background border-b border-border overflow-y-auto max-h-[calc(100vh-4rem)] lg:hidden"
             >
               <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col">
                 {NAV_ITEMS.map((item) => (
-                  <div key={item.label} className="border-b border-[#1E3A5F]/60 last:border-b-0">
+                  <div key={item.label} className="border-b border-border/60 last:border-b-0">
                     {item.children ? (
                       <>
                         <button
-                          className="w-full flex items-center justify-between px-2 py-3.5 text-sm text-[#F8FAFC] hover:text-[#F97316] transition-colors duration-200"
+                          className="w-full flex items-center justify-between px-2 py-3.5 text-sm text-foreground hover:text-primary transition-colors duration-200"
                           onClick={() => toggleMobileSection(item.label)}
                           aria-expanded={openMobileSection === item.label}
                         >
@@ -249,7 +243,7 @@ export function Navbar() {
                           <motion.span
                             animate={{ rotate: openMobileSection === item.label ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
-                            className="inline-flex text-[#94A3B8]"
+                            className="inline-flex text-muted-foreground"
                           >
                             <ChevronDown size={16} />
                           </motion.span>
@@ -264,12 +258,12 @@ export function Navbar() {
                               transition={{ duration: 0.2 }}
                               className="overflow-hidden"
                             >
-                              <div className="pl-3 border-l-2 border-[#F97316]/40 ml-2 pb-2">
+                              <div className="pl-3 border-l-2 border-primary/40 ml-2 pb-2">
                                 {item.children.map((child) => (
                                   <Link
                                     key={child.href}
                                     href={child.href}
-                                    className="block px-3 py-2.5 text-sm text-[#94A3B8] hover:text-[#F97316] transition-colors duration-150"
+                                    className="block px-3 py-2.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
                                     onClick={closeMobileMenu}
                                   >
                                     {child.label}
@@ -283,7 +277,7 @@ export function Navbar() {
                     ) : (
                       <Link
                         href={item.href!}
-                        className="block px-2 py-3.5 text-sm text-[#F8FAFC] hover:text-[#F97316] transition-colors duration-200"
+                        className="block px-2 py-3.5 text-sm text-foreground hover:text-primary transition-colors duration-200"
                         onClick={closeMobileMenu}
                       >
                         {item.label}
@@ -294,13 +288,14 @@ export function Navbar() {
 
                 {/* Mobile CTA */}
                 <div className="py-4">
-                  <Link
+                  <CTAButton
                     href="/engage/contact"
-                    className="block w-full text-center px-4 py-3 rounded-lg bg-[#F97316] text-white text-sm font-semibold hover:bg-[#ea6a0a] transition-colors duration-200"
+                    variant="primary"
+                    className="block w-full text-center px-4 py-3"
                     onClick={closeMobileMenu}
                   >
                     Let&apos;s Talk
-                  </Link>
+                  </CTAButton>
                 </div>
               </div>
             </motion.div>

@@ -31,7 +31,7 @@ const pillars: Pillar[] = [
   {
     title: 'Accelerators',
     description:
-      'Pre-built, production-ready AI accelerators — ReconcileAI, KnowledgePulse, InsightBridge, SyntheticEdge, and PromptLine',
+      'Pre-built, production-ready AI accelerators - ReconcileAI, KnowledgePulse, InsightBridge, SyntheticEdge, and PromptLine',
     href: '/products/accelerators',
     icon: Rocket,
   },
@@ -39,7 +39,7 @@ const pillars: Pillar[] = [
 
 export function ThreePillars() {
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 bg-[#0F1B2D]">
+    <section className="py-20 px-4 md:px-8 lg:px-16 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         <SectionHeader
           eyebrow="What We Do"
@@ -54,28 +54,28 @@ export function ThreePillars() {
               <motion.div
                 key={pillar.href}
                 className={cn(
-                  'flex flex-col gap-5 bg-[#1A2B45] border border-[#1E3A5F] rounded-xl p-6 md:p-8',
-                  'transition-colors duration-300 hover:border-[#F97316]/50'
+                  'flex flex-col gap-5 bg-card border border-border rounded-xl p-6 md:p-8',
+                  'transition-colors duration-300 hover:border-primary/50'
                 )}
                 whileHover={{ y: -4 }}
                 transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
               >
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#F97316]/10">
-                  <Icon className="w-6 h-6 text-[#F97316]" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10">
+                  <Icon className="w-6 h-6 text-primary" />
                 </div>
 
                 <div className="flex flex-col gap-3 flex-1">
-                  <h3 className="text-xl font-semibold text-[#F8FAFC]">
+                  <h3 className="text-xl font-semibold text-foreground">
                     {pillar.title}
                   </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed flex-1">
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                     {pillar.description}
                   </p>
                 </div>
 
                 <Link
                   href={pillar.href}
-                  className="text-sm font-medium text-[#F97316] hover:text-[#ea6a0a] transition-colors duration-200 self-start"
+                  className="text-sm font-medium text-primary hover:text-[#ea6a0a] transition-colors duration-200 self-start"
                 >
                   Learn More &rarr;
                 </Link>

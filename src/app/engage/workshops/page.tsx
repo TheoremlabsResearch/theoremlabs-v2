@@ -30,7 +30,7 @@ const workshopOutcomes: WorkshopOutcome[] = [
   { text: 'Defined AI use-case priorities ranked by impact and feasibility' },
   { text: 'A concrete implementation roadmap with clear milestones and owners' },
   { text: 'Technology stack recommendations tailored to your existing infrastructure' },
-  { text: 'Quick-win identification — high-value initiatives you can start within 30 days' },
+  { text: 'Quick-win identification - high-value initiatives you can start within 30 days' },
 ];
 
 const audienceRoles: AudienceRole[] = [
@@ -43,7 +43,7 @@ const audienceRoles: AudienceRole[] = [
 
 const formatPhases: FormatPhase[] = [
   {
-    icon: <ClipboardList className="h-6 w-6 text-[#F97316]" aria-hidden="true" />,
+    icon: <ClipboardList className="h-6 w-6 text-primary" aria-hidden="true" />,
     phase: '01',
     title: 'Pre-Workshop',
     items: [
@@ -54,7 +54,7 @@ const formatPhases: FormatPhase[] = [
     ],
   },
   {
-    icon: <Users2 className="h-6 w-6 text-[#F97316]" aria-hidden="true" />,
+    icon: <Users2 className="h-6 w-6 text-primary" aria-hidden="true" />,
     phase: '02',
     title: 'During Workshop',
     items: [
@@ -65,7 +65,7 @@ const formatPhases: FormatPhase[] = [
     ],
   },
   {
-    icon: <Rocket className="h-6 w-6 text-[#F97316]" aria-hidden="true" />,
+    icon: <Rocket className="h-6 w-6 text-primary" aria-hidden="true" />,
     phase: '03',
     title: 'Post-Workshop',
     items: [
@@ -79,7 +79,7 @@ const formatPhases: FormatPhase[] = [
 
 export default function WorkshopsPage() {
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       {/* Hero */}
       <PageHero
         eyebrow="Engage"
@@ -88,7 +88,7 @@ export default function WorkshopsPage() {
       />
 
       {/* What Is a Setup Design Workshop */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-border">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
             {/* Description */}
@@ -98,32 +98,32 @@ export default function WorkshopsPage() {
                 title="What is a Setup Design Workshop?"
                 align="left"
               />
-              <p className="text-[#94A3B8] text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 A Setup Design Workshop is a focused 1-2 day engagement where Theoremlabs
                 facilitates structured discovery, stakeholder alignment, and roadmap creation for AI
                 and Fintech initiatives. It is designed to replace months of unproductive back-and-forth
                 with a single, high-intensity session that produces decisions, not slide decks.
               </p>
-              <p className="text-[#94A3B8] text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 Our practitioners bring deep Fintech domain knowledge and AI implementation
                 experience directly into the room with your team. By the end, your organization
-                walks away with a clear, prioritized plan — and the confidence to execute it.
+                walks away with a clear, prioritized plan - and the confidence to execute it.
               </p>
             </div>
 
             {/* Who it's for */}
             <div className="flex flex-col gap-5">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
                 Who It&apos;s For
               </p>
               <ul className="flex flex-col gap-3 list-none p-0 m-0">
                 {audienceRoles.map((role) => (
                   <li key={role.title} className="flex items-center gap-3">
                     <CheckCircle2
-                      className="h-5 w-5 text-[#F97316] flex-shrink-0"
+                      className="h-5 w-5 text-primary flex-shrink-0"
                       aria-hidden="true"
                     />
-                    <span className="text-[#F8FAFC] text-base">{role.title}</span>
+                    <span className="text-foreground text-base">{role.title}</span>
                   </li>
                 ))}
               </ul>
@@ -133,7 +133,7 @@ export default function WorkshopsPage() {
       </section>
 
       {/* Workshop Outcomes */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-border">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
           <SectionHeader
             eyebrow="What You Get"
@@ -147,14 +147,14 @@ export default function WorkshopsPage() {
               <li
                 key={index}
                 className={cn(
-                  'flex items-start gap-4 bg-[#1A2B45] border border-[#1E3A5F] rounded-xl p-6',
-                  'transition-colors duration-200 hover:border-[#F97316]/40'
+                  'flex items-start gap-4 bg-card border border-border rounded-xl p-6',
+                  'transition-colors duration-200 hover:border-primary/40'
                 )}
               >
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#0F1B2D] border border-[#1E3A5F]">
-                  <CheckCircle2 className="h-5 w-5 text-[#F97316]" aria-hidden="true" />
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-background border border-border">
+                  <CheckCircle2 className="h-5 w-5 text-primary" aria-hidden="true" />
                 </div>
-                <p className="text-[#F8FAFC] text-sm leading-relaxed pt-1.5">{outcome.text}</p>
+                <p className="text-foreground text-sm leading-relaxed pt-1.5">{outcome.text}</p>
               </li>
             ))}
           </ul>
@@ -162,7 +162,7 @@ export default function WorkshopsPage() {
       </section>
 
       {/* Workshop Format */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-[#1E3A5F]">
+      <section className="py-20 px-4 md:px-8 lg:px-16 border-b border-border">
         <div className="max-w-7xl mx-auto flex flex-col gap-14">
           <SectionHeader
             eyebrow="The Format"
@@ -176,37 +176,37 @@ export default function WorkshopsPage() {
               <div
                 key={phase.phase}
                 className={cn(
-                  'relative flex flex-col gap-6 rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-8',
-                  'transition-colors duration-200 hover:border-[#F97316]'
+                  'relative flex flex-col gap-6 rounded-xl bg-card border border-border p-8',
+                  'transition-colors duration-200 hover:border-primary'
                 )}
               >
                 {/* Connector line between cards (desktop only) */}
                 {index < formatPhases.length - 1 && (
-                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-[#1E3A5F] z-10" />
+                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-border z-10" />
                 )}
 
                 {/* Phase number */}
-                <span className="text-5xl font-black text-[#1E3A5F] leading-none select-none">
+                <span className="text-5xl font-black text-border leading-none select-none">
                   {phase.phase}
                 </span>
 
                 {/* Icon + phase label + title */}
                 <div className="flex flex-col gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0F1B2D] border border-[#1E3A5F]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-background border border-border">
                     {phase.icon}
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316] mt-2">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-primary mt-2">
                     Phase {phase.phase}
                   </span>
-                  <h3 className="text-xl font-bold text-[#F8FAFC] tracking-tight">{phase.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground tracking-tight">{phase.title}</h3>
                 </div>
 
                 {/* Items */}
                 <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
                   {phase.items.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#F97316]" />
-                      <span className="text-[#94A3B8] text-sm leading-relaxed">{item}</span>
+                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                      <span className="text-muted-foreground text-sm leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -219,23 +219,19 @@ export default function WorkshopsPage() {
       {/* CTA Banner */}
       <section className="py-20 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-10 md:p-16 text-center flex flex-col items-center gap-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
-              Get Started
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#F8FAFC] max-w-2xl">
-              Ready to turn ambition into a roadmap?
-            </h2>
-            <p className="text-[#94A3B8] text-base leading-relaxed max-w-xl">
-              Book a Setup Design Workshop and leave with a clear AI implementation plan your team
-              can act on immediately.
-            </p>
+          <div className="rounded-xl bg-card border border-border p-10 md:p-16 flex flex-col items-center gap-6">
+            <SectionHeader
+              eyebrow="Get Started"
+              title="Ready to turn ambition into a roadmap?"
+              subtitle="Book a Setup Design Workshop and leave with a clear AI implementation plan your team can act on immediately."
+              align="center"
+            />
             <CTAButton href="/engage/contact" variant="primary" className="mt-2 px-8 py-4 text-base">
               Book a Workshop
             </CTAButton>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
