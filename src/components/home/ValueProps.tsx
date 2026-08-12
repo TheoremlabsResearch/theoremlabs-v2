@@ -1,7 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import { MapPin } from 'lucide-react';
+import { Award, Handshake, Zap, ShieldCheck, MapPin } from 'lucide-react';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { cn } from '@/lib/utils';
 
@@ -9,8 +8,7 @@ interface ValueCard {
   id: number;
   title: string;
   description: string;
-  iconType: 'image' | 'lucide';
-  imageSrc?: string;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
 }
 
 const VALUE_CARDS: ValueCard[] = [
@@ -19,62 +17,43 @@ const VALUE_CARDS: ValueCard[] = [
     title: 'Battle-Hardened Experts',
     description:
       "Proven leaders from Fintech, AI, and management consulting who've built and shipped real products",
-    iconType: 'image',
-    imageSrc: '/images/icon-battle-hardened.png',
+    icon: Award,
   },
   {
     id: 2,
     title: 'Walk the Talk',
     description:
       "We've built what we recommend. Our team has hands-on experience with every technology we advise on",
-    iconType: 'image',
-    imageSrc: '/images/icon-walk-talk.png',
+    icon: Handshake,
   },
   {
     id: 3,
     title: 'Lean & Agile Teams',
     description:
       'Move fast without the bureaucracy. Small, expert teams that deliver results quickly',
-    iconType: 'image',
-    imageSrc: '/images/icon-lean-agile.png',
+    icon: Zap,
   },
   {
     id: 4,
     title: 'Risk-Literate AI',
     description:
       'Built with compliance and risk management in mind from day one. AI that regulators can trust',
-    iconType: 'image',
-    imageSrc: '/images/icon-risk-literate.png',
+    icon: ShieldCheck,
   },
   {
     id: 5,
     title: 'Prime Location',
     description:
       'Charlotte, NC: a thriving Fintech hub at the heart of the US banking ecosystem',
-    iconType: 'lucide',
+    icon: MapPin,
   },
 ];
 
 function CardIcon({ card }: { card: ValueCard }) {
-  if (card.iconType === 'lucide') {
-    return (
-      <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
-        <MapPin className="w-8 h-8 md:w-10 md:h-10 text-[#F97316]" strokeWidth={1.5} aria-hidden="true" />
-      </div>
-    );
-  }
-
+  const Icon = card.icon;
   return (
     <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
-      <Image
-        src={card.imageSrc!}
-        alt={card.title}
-        width={64}
-        height={64}
-        className="object-contain"
-        sizes="(max-width: 768px) 48px, 64px"
-        loading="lazy"
-      />
+      <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" strokeWidth={1.5} />
     </div>
   );
 }
@@ -83,15 +62,15 @@ function ValueCard({ card }: { card: ValueCard }) {
   return (
     <div
       className={cn(
-        'bg-[#1A2B45] border border-[#1E3A5F] rounded-xl p-6',
-        'hover:border-[#F97316]/40 transition-colors',
+        'bg-card border border-border rounded-xl p-6',
+        'hover:border-primary/40 transition-colors',
         'flex flex-col gap-4'
       )}
     >
       <CardIcon card={card} />
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold text-[#F8FAFC] leading-snug">{card.title}</h3>
-        <p className="text-sm text-[#94A3B8] leading-relaxed">{card.description}</p>
+        <h3 className="text-lg font-semibold text-foreground leading-snug">{card.title}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
       </div>
     </div>
   );
@@ -99,7 +78,7 @@ function ValueCard({ card }: { card: ValueCard }) {
 
 export function ValueProps() {
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 bg-[#0F1B2D]">
+    <section className="py-20 px-4 md:px-8 lg:px-16 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         <SectionHeader
           eyebrow="What Sets Us Apart"

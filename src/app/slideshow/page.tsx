@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Scale, BookOpen, Database, Sparkles, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // ─── Slide transition ─────────────────────────────────────────────────────────
@@ -27,8 +27,8 @@ const slideVariants = {
 function Orbs() {
   return (
     <>
-      <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-[#3B82F6]/6 blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-[#F97316]/6 blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-accent/6 blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-primary/6 blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
     </>
   );
 }
@@ -45,8 +45,8 @@ type BadgeColor = 'orange' | 'blue' | 'green' | 'purple';
 
 function Badge({ children, color = 'orange' }: { children: React.ReactNode; color?: BadgeColor }) {
   const colorMap: Record<BadgeColor, string> = {
-    orange: 'bg-[#F97316]/15 border-[#F97316]/30 text-[#F97316]',
-    blue: 'bg-[#3B82F6]/15 border-[#3B82F6]/30 text-[#3B82F6]',
+    orange: 'bg-primary/15 border-primary/30 text-primary',
+    blue: 'bg-accent/15 border-accent/30 text-accent',
     green: 'bg-[#10B981]/15 border-[#10B981]/30 text-[#10B981]',
     purple: 'bg-[#8B5CF6]/15 border-[#8B5CF6]/30 text-[#8B5CF6]',
   };
@@ -94,7 +94,7 @@ function CoverSlide() {
   return (
     <div className="relative w-full h-full overflow-hidden">
       <Image src="/images/hero-bg.jpg" alt="" fill className="object-cover" priority />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0F1B2D]/93 via-[#0F1B2D]/78 to-[#0F1B2D]/55" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/93 via-background/78 to-background/55" />
       <Orbs />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-10">
         <motion.div
@@ -119,7 +119,7 @@ function CoverSlide() {
           transition={{ duration: 1, delay: 0.18, ease: 'easeOut' as const }}
         >
           The New<br />
-          <span className="text-[#F97316]">Software Era</span>
+          <span className="text-primary">Software Era</span>
         </motion.h1>
         <motion.p
           className="text-xl md:text-2xl text-slate-300 max-w-3xl leading-relaxed mb-11"
@@ -138,7 +138,7 @@ function CoverSlide() {
         >
           {['Charlotte, NC', 'theoremlabs.io', 'Est. 2025'].map((item) => (
             <span key={item} className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               {item}
             </span>
           ))}
@@ -152,14 +152,14 @@ function CoverSlide() {
 
 function MissionSlide() {
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-20">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-20">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 text-center max-w-5xl">
         <div className="mb-5"><Badge>Who We Are</Badge></div>
         <Heading delay={0.1}>
           Bridging Vision<br />
-          <span className="text-[#3B82F6]">&amp; Execution</span>
+          <span className="text-accent">&amp; Execution</span>
         </Heading>
         <div className="mt-6 mb-10">
           <Sub delay={0.25}>
@@ -180,8 +180,8 @@ function MissionSlide() {
             { value: '5+', label: 'AI Accelerators' },
             { value: '2', label: 'Flagship Products' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-[#1A2B45] rounded-2xl p-6 border border-[#1E3A5F]">
-              <div className="text-5xl font-black text-[#F97316] mb-2">{stat.value}</div>
+            <div key={stat.label} className="bg-card rounded-2xl p-6 border border-border">
+              <div className="text-5xl font-black text-primary mb-2">{stat.value}</div>
               <div className="text-slate-400 text-sm">{stat.label}</div>
             </div>
           ))}
@@ -216,7 +216,7 @@ function ThreePillarsSlide() {
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-10 md:px-16">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-10 md:px-16">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-6xl">
@@ -224,19 +224,19 @@ function ThreePillarsSlide() {
           <div className="mb-4"><Badge>Our Services</Badge></div>
           <Heading delay={0.1}>Three Pillars of Excellence</Heading>
           <div className="mt-4 max-w-2xl mx-auto">
-            <Sub delay={0.22}>A unified approach to AI transformation — strategy, experimentation, and acceleration</Sub>
+            <Sub delay={0.22}>A unified approach to AI transformation - strategy, experimentation, and acceleration</Sub>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-6">
           {pillars.map((p, i) => (
             <motion.div
               key={p.title}
-              className="bg-[#1A2B45] rounded-2xl p-8 border border-[#1E3A5F] flex flex-col items-center text-center"
+              className="bg-card rounded-2xl p-8 border border-border flex flex-col items-center text-center"
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 + i * 0.15, ease: 'easeOut' as const }}
             >
-              <div className="w-20 h-20 rounded-2xl mb-6 overflow-hidden bg-[#0F1B2D] flex items-center justify-center p-2">
+              <div className="w-20 h-20 rounded-2xl mb-6 overflow-hidden bg-background flex items-center justify-center p-2">
                 <Image src={p.image} alt={p.title} width={72} height={72} className="object-contain" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">{p.title}</h3>
@@ -255,14 +255,14 @@ function ThreePillarsSlide() {
 function WhyUsSlide() {
   const items = [
     { img: '/images/icon-battle-hardened.png', title: 'Battle-Hardened Experts', desc: 'Seasoned practitioners who have shipped production AI systems in regulated Fintech environments.' },
-    { img: '/images/icon-walk-talk.png', title: 'Walk the Talk', desc: 'We build the same solutions we recommend — no theoretical advice, only proven approaches.' },
+    { img: '/images/icon-walk-talk.png', title: 'Walk the Talk', desc: 'We build the same solutions we recommend - no theoretical advice, only proven approaches.' },
     { img: '/images/icon-lean-agile.png', title: 'Lean & Agile Teams', desc: 'Small, expert-dense squads that move fast without sacrificing quality or compliance.' },
     { img: '/images/icon-risk-literate.png', title: 'Risk-Literate AI', desc: 'Deep understanding of financial risk, compliance, and regulatory requirements in AI deployment.' },
-    { img: '/images/icon-prime-location.png', title: 'Prime Location', desc: 'Headquartered in Charlotte, NC — the second-largest financial hub in the United States.' },
+    { img: '/images/icon-prime-location.png', title: 'Prime Location', desc: 'Headquartered in Charlotte, NC - the second-largest financial hub in the United States.' },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl">
@@ -277,12 +277,12 @@ function WhyUsSlide() {
           {items.map((item, i) => (
             <motion.div
               key={item.title}
-              className="bg-[#1A2B45] rounded-2xl p-5 border border-[#1E3A5F] flex flex-col items-center text-center"
+              className="bg-card rounded-2xl p-5 border border-border flex flex-col items-center text-center"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.35 + i * 0.1, ease: 'easeOut' as const }}
             >
-              <div className="w-14 h-14 rounded-xl mb-4 overflow-hidden bg-[#0F1B2D] flex items-center justify-center p-1">
+              <div className="w-14 h-14 rounded-xl mb-4 overflow-hidden bg-background flex items-center justify-center p-1">
                 <Image src={item.img} alt={item.title} width={52} height={52} className="object-contain" />
               </div>
               <h3 className="text-sm font-bold text-white mb-2 leading-snug">{item.title}</h3>
@@ -301,13 +301,13 @@ function KirdarSlide() {
   const features = [
     'AI-powered role-play scenarios for realistic, immersive training',
     'Identifies individual skill gaps with precision analytics',
-    'Accelerates onboarding — new employees ramp faster',
+    'Accelerates onboarding - new employees ramp faster',
     'Personalised adaptive learning paths driven by AI',
     'Scales across global teams without additional headcount',
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-16">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-16">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-6xl flex items-center gap-16">
@@ -319,7 +319,7 @@ function KirdarSlide() {
         >
           <div className="mb-5"><Badge>Flagship Product</Badge></div>
           <h2 className="text-6xl md:text-7xl font-black text-white mb-5 tracking-tight">
-            Kirdar<span className="text-[#F97316]">.ai</span>
+            Kirdar<span className="text-primary">.ai</span>
           </h2>
           <p className="text-slate-300 text-xl mb-8 leading-relaxed">
             The next-generation employee training simulator that transforms how organisations
@@ -334,8 +334,8 @@ function KirdarSlide() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.45 + i * 0.1, ease: 'easeOut' as const }}
               >
-                <span className="mt-0.5 w-5 h-5 rounded-full bg-[#F97316]/20 border border-[#F97316]/50 flex items-center justify-center flex-shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
+                <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                 </span>
                 {f}
               </motion.li>
@@ -348,15 +348,15 @@ function KirdarSlide() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, delay: 0.2, ease: 'easeOut' as const }}
         >
-          <div className="bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/5 rounded-3xl p-10 border border-[#F97316]/25 text-center">
-            <div className="w-20 h-20 rounded-full bg-[#F97316]/20 border border-[#F97316]/40 flex items-center justify-center mx-auto mb-5">
-              <span className="text-5xl font-black text-[#F97316]">K</span>
+          <div className="bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl p-10 border border-primary/25 text-center">
+            <div className="w-20 h-20 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center mx-auto mb-5">
+              <span className="text-5xl font-black text-primary">K</span>
             </div>
-            <div className="text-2xl font-bold text-[#F97316] mb-1">Kirdar.ai</div>
+            <div className="text-2xl font-bold text-primary mb-1">Kirdar.ai</div>
             <div className="text-slate-400 text-sm mb-7">Employee Training Simulator</div>
             <div className="space-y-2.5">
               {['Role Play Training', 'Onboarding Flows', 'Skill Gap Analysis', 'AI Assessment'].map((tag) => (
-                <div key={tag} className="px-4 py-2.5 bg-[#0F1B2D]/60 rounded-xl text-slate-300 text-sm border border-[#1E3A5F]">
+                <div key={tag} className="px-4 py-2.5 bg-background/60 rounded-xl text-slate-300 text-sm border border-border">
                   {tag}
                 </div>
               ))}
@@ -379,7 +379,7 @@ function DataGazeSlide() {
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-16">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-16">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-6xl flex items-center gap-16">
@@ -389,15 +389,15 @@ function DataGazeSlide() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, ease: 'easeOut' as const }}
         >
-          <div className="bg-gradient-to-br from-[#3B82F6]/20 to-[#3B82F6]/5 rounded-3xl p-10 border border-[#3B82F6]/25 text-center">
-            <div className="w-20 h-20 rounded-full bg-[#3B82F6]/20 border border-[#3B82F6]/40 flex items-center justify-center mx-auto mb-5">
-              <span className="text-5xl font-black text-[#3B82F6]">D</span>
+          <div className="bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl p-10 border border-accent/25 text-center">
+            <div className="w-20 h-20 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center mx-auto mb-5">
+              <span className="text-5xl font-black text-accent">D</span>
             </div>
-            <div className="text-2xl font-bold text-[#3B82F6] mb-1">DataGaze.ai</div>
+            <div className="text-2xl font-bold text-accent mb-1">DataGaze.ai</div>
             <div className="text-slate-400 text-sm mb-7">Data Intelligence Platform</div>
             <div className="grid grid-cols-2 gap-2.5">
               {['AI', 'Data', 'Cloud', 'Fintech'].map((tag) => (
-                <div key={tag} className="px-3 py-2.5 bg-[#0F1B2D]/60 rounded-xl text-slate-300 text-sm text-center border border-[#1E3A5F]">
+                <div key={tag} className="px-3 py-2.5 bg-background/60 rounded-xl text-slate-300 text-sm text-center border border-border">
                   {tag}
                 </div>
               ))}
@@ -412,7 +412,7 @@ function DataGazeSlide() {
         >
           <div className="mb-5"><Badge color="blue">Flagship Product</Badge></div>
           <h2 className="text-6xl md:text-7xl font-black text-white mb-5 tracking-tight">
-            DataGaze<span className="text-[#3B82F6]">.ai</span>
+            DataGaze<span className="text-accent">.ai</span>
           </h2>
           <p className="text-slate-300 text-xl mb-8 leading-relaxed">
             An intelligent data observability and analytics platform built for the
@@ -422,12 +422,12 @@ function DataGazeSlide() {
             {caps.map((cap, i) => (
               <motion.div
                 key={cap.title}
-                className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]"
+                className="bg-card rounded-xl p-4 border border-border"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.5 + i * 0.1, ease: 'easeOut' as const }}
               >
-                <div className="text-[#3B82F6] font-semibold text-sm mb-1.5">{cap.title}</div>
+                <div className="text-accent font-semibold text-sm mb-1.5">{cap.title}</div>
                 <div className="text-slate-400 text-xs leading-relaxed">{cap.desc}</div>
               </motion.div>
             ))}
@@ -459,13 +459,13 @@ function UBPRIntelligenceSlide() {
     },
     {
       title: 'Exam Preparation Module',
-      desc: 'Auto-generates response narratives for capital adequacy, asset quality, earnings, and liquidity — keyed to your ratios.',
+      desc: 'Auto-generates response narratives for capital adequacy, asset quality, earnings, and liquidity - keyed to your ratios.',
       tag: 'AI',
     },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl flex items-start gap-12">
@@ -478,15 +478,15 @@ function UBPRIntelligenceSlide() {
         >
           <div><Badge color="blue">Partnership Product</Badge></div>
           <div>
-            <div className="text-xs font-bold uppercase tracking-widest text-[#3B82F6] mb-2">Vantage Bank × Theoremlabs</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2">Vantage Bank × Theoremlabs</div>
             <h2 className="text-5xl font-black text-white tracking-tight leading-tight">
-              UBPR<br /><span className="text-[#3B82F6]">Intelligence</span>
+              UBPR<br /><span className="text-accent">Intelligence</span>
             </h2>
             <p className="text-slate-400 text-sm mt-2">AI-Powered · Production-Ready · v1.0 · 2026</p>
           </div>
           <p className="text-slate-300 text-sm leading-relaxed">
             An AI-native application that transforms a community bank&apos;s raw UBPR data into
-            exam-ready insights, real-time peer benchmarks, and strategic performance signals —
+            exam-ready insights, real-time peer benchmarks, and strategic performance signals -
             deployed in weeks, not months.
           </p>
           <motion.div
@@ -499,13 +499,13 @@ function UBPRIntelligenceSlide() {
               { value: '2–4', label: 'Weeks to Deploy' },
               { value: '60+', label: 'UBPR Metrics' },
             ].map((s) => (
-              <div key={s.label} className="bg-[#1A2B45] rounded-xl p-3 border border-[#1E3A5F] text-center">
-                <div className="text-xl font-black text-[#3B82F6]">{s.value}</div>
+              <div key={s.label} className="bg-card rounded-xl p-3 border border-border text-center">
+                <div className="text-xl font-black text-accent">{s.value}</div>
                 <div className="text-[10px] text-slate-400 mt-0.5">{s.label}</div>
               </div>
             ))}
           </motion.div>
-          <div className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]">
+          <div className="bg-card rounded-xl p-4 border border-border">
             <div className="text-xs font-bold uppercase tracking-widest text-white mb-2">Ideal For</div>
             <p className="text-slate-400 text-xs leading-relaxed">
               $500M–$5B community and regional banks. Texas-first, expanding nationally.
@@ -526,14 +526,14 @@ function UBPRIntelligenceSlide() {
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.title}
-                className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]"
+                className="bg-card rounded-xl p-4 border border-border"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.38 + i * 0.08, ease: 'easeOut' as const }}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-5 h-0.5 rounded-full bg-[#3B82F6]" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]">{cap.tag}</span>
+                  <div className="w-5 h-0.5 rounded-full bg-accent" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent">{cap.tag}</span>
                 </div>
                 <h3 className="text-white font-semibold text-sm mb-1">{cap.title}</h3>
                 <p className="text-slate-400 text-xs leading-relaxed">{cap.desc}</p>
@@ -541,7 +541,7 @@ function UBPRIntelligenceSlide() {
             ))}
           </div>
           <motion.div
-            className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]"
+            className="bg-card rounded-xl p-4 border border-border"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.72, ease: 'easeOut' as const }}
@@ -549,7 +549,7 @@ function UBPRIntelligenceSlide() {
             <div className="text-xs font-bold uppercase tracking-widest text-white mb-3">Powered By</div>
             <div className="flex flex-wrap gap-2">
               {['FFIEC / FDIC UBPR API', 'Vantage Cloud-Native Infra', 'LLM Intelligence Layer', 'FS Compliance Rail'].map((tech) => (
-                <span key={tech} className="px-3 py-1 rounded-full bg-[#0F1B2D] border border-[#1E3A5F] text-slate-400 text-xs">
+                <span key={tech} className="px-3 py-1 rounded-full bg-background border border-border text-slate-400 text-xs">
                   {tech}
                 </span>
               ))}
@@ -561,9 +561,9 @@ function UBPRIntelligenceSlide() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.9, ease: 'easeOut' as const }}
           >
-            <div className="flex-1 h-px bg-[#1E3A5F]" />
+            <div className="flex-1 h-px bg-border" />
             <span className="text-slate-500 text-xs">Vantage Collabs Software Developer Program · FINZPIRE 2026 · Charlotte, NC</span>
-            <div className="flex-1 h-px bg-[#1E3A5F]" />
+            <div className="flex-1 h-px bg-border" />
           </motion.div>
         </motion.div>
       </div>
@@ -575,16 +575,16 @@ function UBPRIntelligenceSlide() {
 
 function PromptLineSlide() {
   const useCases = [
-    { title: 'Account Inquiries', desc: 'Balance checks and transaction history resolved instantly — 24/7, without agent involvement.' },
+    { title: 'Account Inquiries', desc: 'Balance checks and transaction history resolved instantly - 24/7, without agent involvement.' },
     { title: 'Loan & Credit Queries', desc: 'Answer eligibility questions and guide customers through next steps with zero wait time.' },
     { title: 'Collections & Reminders', desc: 'Proactive outreach that negotiates payment arrangements and logs outcomes automatically.' },
     { title: 'KYC & Identity Verification', desc: 'Guide customers through identity workflows conversationally, reducing abandonment.' },
-    { title: 'Appointment Scheduling', desc: 'Book branch visits and advisor calls through voice or text — integrated with your calendar.' },
+    { title: 'Appointment Scheduling', desc: 'Book branch visits and advisor calls through voice or text - integrated with your calendar.' },
     { title: 'Fraud Alerts & Confirmations', desc: 'Reach customers instantly on suspicious activity. Confirm or dispute in one secure conversation.' },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl flex items-start gap-12">
@@ -598,18 +598,18 @@ function PromptLineSlide() {
           <div><Badge>Product</Badge></div>
           <div>
             <h2 className="text-6xl font-black text-white tracking-tight leading-tight">
-              Prompt<span className="text-[#F97316]">Line</span>
+              Prompt<span className="text-primary">Line</span>
             </h2>
             <p className="text-slate-400 text-sm mt-2">Conversational AI Phone &amp; Text</p>
           </div>
           <p className="text-slate-300 text-sm leading-relaxed">
             AI-powered voice and text interfaces that handle customer queries, route complex cases,
-            and integrate with core banking systems — 24/7, without agent involvement.
+            and integrate with core banking systems - 24/7, without agent involvement.
           </p>
           <ul className="space-y-3">
             {[
               'Resolve 70%+ of inquiries without agent involvement',
-              'Go live on voice & SMS in days — not months',
+              'Go live on voice & SMS in days - not months',
               'Full compliance audit trail for every conversation',
             ].map((pt, i) => (
               <motion.li
@@ -619,8 +619,8 @@ function PromptLineSlide() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.45, delay: 0.45 + i * 0.1, ease: 'easeOut' as const }}
               >
-                <span className="mt-0.5 w-4 h-4 rounded-full bg-[#F97316]/20 border border-[#F97316]/50 flex items-center justify-center flex-shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
+                <span className="mt-0.5 w-4 h-4 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                 </span>
                 {pt}
               </motion.li>
@@ -638,8 +638,8 @@ function PromptLineSlide() {
               { value: '1.8m', label: 'Avg Handle' },
               { value: '99.9%', label: 'Uptime' },
             ].map((s) => (
-              <div key={s.label} className="bg-[#1A2B45] rounded-xl p-3 border border-[#1E3A5F] text-center">
-                <div className="text-lg font-black text-[#F97316]">{s.value}</div>
+              <div key={s.label} className="bg-card rounded-xl p-3 border border-border text-center">
+                <div className="text-lg font-black text-primary">{s.value}</div>
                 <div className="text-[10px] text-slate-400 mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -658,12 +658,12 @@ function PromptLineSlide() {
             {useCases.map((uc, i) => (
               <motion.div
                 key={uc.title}
-                className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]"
+                className="bg-card rounded-xl p-4 border border-border"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.38 + i * 0.08, ease: 'easeOut' as const }}
               >
-                <div className="w-5 h-0.5 rounded-full bg-[#F97316] mb-2" />
+                <div className="w-5 h-0.5 rounded-full bg-primary mb-2" />
                 <h3 className="text-white font-semibold text-sm mb-1">{uc.title}</h3>
                 <p className="text-slate-400 text-xs leading-relaxed">{uc.desc}</p>
               </motion.div>
@@ -685,7 +685,7 @@ interface AcceleratorData {
   capabilities: string[];
   results: { context: string; stats: Array<{ value: string; label: string }> };
   idealFor: string;
-  image?: string;
+  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
 }
 
 const ACC_COLORS = [
@@ -698,31 +698,31 @@ const ACCELERATOR_DATA: AcceleratorData[] = [
     name: 'ReconcileAI',
     subtitle: 'Intelligent Data Reconciliation',
     tagline: 'Automate complex reconciliation processes with AI precision',
-    description: 'Automates the end-to-end reconciliation process across financial, inventory, and compliance data. Using a blend of rules and AI, it matches large datasets, flags discrepancies, and generates audit-ready summaries — accelerating close cycles and reducing manual workloads.',
+    description: 'Automates the end-to-end reconciliation process across financial, inventory, and compliance data. Using a blend of rules and AI, it matches large datasets, flags discrepancies, and generates audit-ready summaries - accelerating close cycles and reducing manual workloads.',
     capabilities: ['Automated matching and exception handling', 'AI-powered anomaly detection', 'Multi-source data reconciliation', 'Audit-ready reporting and compliance', 'Accelerated close cycles'],
     results: { context: 'FinTech / Payments', stats: [{ value: '92%', label: 'Automated Matching' }, { value: '5d → <24h', label: 'Reconciliation Cycle' }, { value: '300+', label: 'Hours Saved / Month' }] },
     idealFor: 'Banks, fintechs, and enterprise accounting teams',
-    image: '/images/product-reconcile-ai.gif',
+    icon: Scale,
   },
   {
     name: 'KnowledgePulse',
     subtitle: 'Dynamic Knowledge Management',
     tagline: 'Turn tribal knowledge into intelligent support systems',
-    description: 'Converts static documents and support material into a dynamic, searchable knowledge base. Powered by RAG and NLP, it drives intelligent FAQs, contextual help, and customer support bots. As documentation evolves, the knowledge base updates automatically — ensuring real-time accuracy.',
+    description: 'Converts static documents and support material into a dynamic, searchable knowledge base. Powered by RAG and NLP, it drives intelligent FAQs, contextual help, and customer support bots. As documentation evolves, the knowledge base updates automatically - ensuring real-time accuracy.',
     capabilities: ['Dynamic, searchable knowledge base', 'AI-powered FAQ generation', 'Real-time accuracy and updates', 'RAG architecture with vector search', 'Integrated chatbot support'],
     results: { context: 'SaaS Customer Success', stats: [{ value: '500+', label: 'Auto-Generated Articles' }, { value: '-40%', label: 'Onboarding Questions' }, { value: '78%', label: 'Self-Service Rate' }] },
     idealFor: 'SaaS, enterprise IT, and service organizations',
-    image: '/images/product-knowledge-pulse.gif',
+    icon: BookOpen,
   },
   {
     name: 'InsightBridge',
     subtitle: 'Legacy System Knowledge Extraction',
     tagline: 'Bridge the gap between old infrastructure and modern AI workflows',
-    description: 'Extracts and modernizes knowledge trapped in legacy systems — mainframes, aging databases, and undocumented codebases. InsightBridge creates a structured, queryable knowledge layer on top of your existing estate so teams can move forward without starting from scratch.',
+    description: 'Extracts and modernizes knowledge trapped in legacy systems - mainframes, aging databases, and undocumented codebases. InsightBridge creates a structured, queryable knowledge layer on top of your existing estate so teams can move forward without starting from scratch.',
     capabilities: ['Legacy system knowledge extraction', 'Automated documentation generation', 'Structured knowledge graph output', 'Integration with modern AI workflows', 'Reverse engineering of undocumented logic'],
     results: { context: 'Enterprise Modernization', stats: [{ value: '80%', label: 'Faster Legacy Discovery' }, { value: '60%', label: 'Reduction in Manual Docs' }, { value: '3x', label: 'Faster Modernization' }] },
     idealFor: 'Enterprises with legacy mainframes, aging core systems, or undocumented codebases',
-    image: '/images/product-insight-bridge.gif',
+    icon: Database,
   },
   {
     name: 'SyntheticEdge',
@@ -732,23 +732,23 @@ const ACCELERATOR_DATA: AcceleratorData[] = [
     capabilities: ['PII-safe synthetic data generation', 'Realistic behavior simulation', 'Edge case and anomaly modeling', 'Support for structured and unstructured formats', 'ML platform integrations'],
     results: { context: 'Healthcare AI', stats: [{ value: '✓', label: 'Model Testing w/o PHI' }, { value: '+3mo', label: 'Faster Time-to-Pilot' }, { value: '6w → 5d', label: 'Legal Review Cycle' }] },
     idealFor: 'Healthcare, banking, and insurance sectors with sensitive data requirements',
-    image: '/images/product-synthetic-edge.gif',
+    icon: Sparkles,
   },
   {
     name: 'PromptLine',
     subtitle: 'Conversational AI Phone & Text',
     tagline: 'Intelligent voice and text interfaces for financial services',
-    description: 'AI-powered voice and text interfaces that handle customer queries, route complex cases, and integrate with core banking systems — 24/7, without agent involvement. Replaces rigid IVR systems with natural, contextually aware conversations that resolve issues in real time.',
+    description: 'AI-powered voice and text interfaces that handle customer queries, route complex cases, and integrate with core banking systems - 24/7, without agent involvement. Replaces rigid IVR systems with natural, contextually aware conversations that resolve issues in real time.',
     capabilities: ['Natural AI voice call handling', 'SMS and text automation', 'Intelligent call routing and escalation', 'Core banking system integration', 'Compliance audit trails for every conversation'],
     results: { context: 'Financial Services', stats: [{ value: '78%', label: 'Containment Rate' }, { value: '1.8m', label: 'Avg Handle Time' }, { value: '99.9%', label: 'Uptime' }] },
     idealFor: 'Banks, credit unions, and financial services with high inbound call or SMS volume',
-    image: '/images/product-prompt-line.gif',
+    icon: Phone,
   },
   {
     name: 'Shared Service Marketplace',
     subtitle: 'Centralized Customer Communications',
     tagline: 'Automate 20+ operations-driven communications from one place',
-    description: 'Centralizes customer communication workflows — NSF notices, maturity reminders, tax statements, and more — into a single branded, compliance-ready hub. Triggers messages across email, SMS, and print from one platform, standardizing communications across lines of business.',
+    description: 'Centralizes customer communication workflows - NSF notices, maturity reminders, tax statements, and more - into a single branded, compliance-ready hub. Triggers messages across email, SMS, and print from one platform, standardizing communications across lines of business.',
     capabilities: ['Centralized communication management', 'Multi-channel delivery (email, SMS, print)', 'Compliance-ready message templates', 'Standardized branding and messaging', 'Workflow automation and triggers'],
     results: { context: 'Credit Union', stats: [{ value: '22', label: 'Centralized Workflows' }, { value: '+35%', label: 'Delivery Success Rate' }, { value: '-70%', label: 'Manual Intervention' }] },
     idealFor: 'Banks, credit unions, and insurers looking to modernize customer communications',
@@ -757,7 +757,7 @@ const ACCELERATOR_DATA: AcceleratorData[] = [
     name: 'Digital Twin',
     subtitle: 'Regulatory Compliance',
     tagline: 'Your virtual compliance analyst working 24/7',
-    description: 'An AI-powered digital twin that monitors regulatory changes and automates impact analysis. It identifies affected policies, controls, and stakeholders, drafts recommendations, and routes tasks for review — integrating with enterprise compliance platforms to orchestrate end-to-end response workflows.',
+    description: 'An AI-powered digital twin that monitors regulatory changes and automates impact analysis. It identifies affected policies, controls, and stakeholders, drafts recommendations, and routes tasks for review - integrating with enterprise compliance platforms to orchestrate end-to-end response workflows.',
     capabilities: ['Automated regulatory change monitoring', 'AI-powered impact analysis', 'Policy and control mapping', 'Intelligent task routing and collaboration', 'Comprehensive audit trails'],
     results: { context: 'Insurance Compliance', stats: [{ value: '3w → 4d', label: 'Impact Assessment Time' }, { value: '70%', label: 'Automated Suggestions' }, { value: '✓', label: 'Improved Audit Tracking' }] },
     idealFor: 'Compliance-heavy industries including finance, insurance, and healthcare',
@@ -775,7 +775,7 @@ const ACCELERATOR_DATA: AcceleratorData[] = [
     name: 'Chat-Web-30',
     subtitle: 'Conversational Web Assistant',
     tagline: 'Your website, now talkable',
-    description: 'A web-embedded AI assistant that brings conversational UX to any website. Handles FAQs, directs users to forms, guides them through processes, and triggers calculators or actions — enhancing self-service experiences and increasing conversion by removing friction from navigation.',
+    description: 'A web-embedded AI assistant that brings conversational UX to any website. Handles FAQs, directs users to forms, guides them through processes, and triggers calculators or actions - enhancing self-service experiences and increasing conversion by removing friction from navigation.',
     capabilities: ['Conversational website navigation', 'Intelligent FAQ handling', 'Form guidance and completion support', 'Process walkthrough assistance', 'Calculator and action triggers'],
     results: { context: 'Higher Education', stats: [{ value: '-60%', label: 'Support Queries to Agents' }, { value: '+22%', label: 'Form Completion Rate' }, { value: '78 → 91%', label: 'Customer Satisfaction' }] },
     idealFor: 'Education, financial services, government, and ecommerce sectors',
@@ -795,7 +795,7 @@ const ACCELERATOR_DATA: AcceleratorData[] = [
 
 function AcceleratorsOverviewSlide() {
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-12">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-12">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl">
@@ -803,21 +803,23 @@ function AcceleratorsOverviewSlide() {
           <div className="mb-4"><Badge color="green">AI Accelerators</Badge></div>
           <Heading delay={0.1}>10 Production-Ready Accelerators</Heading>
           <div className="mt-3 max-w-2xl mx-auto">
-            <Sub delay={0.2}>Compress months of development into weeks — built specifically for Fintech</Sub>
+            <Sub delay={0.2}>Compress months of development into weeks - built specifically for Fintech</Sub>
           </div>
         </div>
         <div className="grid grid-cols-5 gap-3">
-          {ACCELERATOR_DATA.map((acc, i) => (
+          {ACCELERATOR_DATA.map((acc, i) => {
+            const Icon = acc.icon;
+            return (
             <motion.div
               key={acc.name}
-              className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F] flex flex-col items-center text-center"
+              className="bg-card rounded-xl p-4 border border-border flex flex-col items-center text-center"
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.3 + i * 0.07, ease: 'easeOut' as const }}
             >
-              {acc.image ? (
-                <div className="w-12 h-12 rounded-lg mb-3 overflow-hidden bg-[#0F1B2D] flex items-center justify-center">
-                  <Image src={acc.image} alt={acc.name} width={44} height={44} className="object-contain" unoptimized />
+              {Icon ? (
+                <div className="w-12 h-12 rounded-lg mb-3 flex items-center justify-center bg-primary/10">
+                  <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
                 </div>
               ) : (
                 <div
@@ -830,7 +832,8 @@ function AcceleratorsOverviewSlide() {
               <h3 className="text-xs font-bold text-white mb-1 leading-tight">{acc.name}</h3>
               <p className="text-[10px] text-slate-400 leading-snug">{acc.subtitle}</p>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
         <motion.p
           className="mt-5 text-center text-slate-500 text-xs"
@@ -856,7 +859,7 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
   const color = ACC_COLORS[index % ACC_COLORS.length];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-12">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-12">
       <div
         className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{ backgroundColor: `${color}08` }}
@@ -905,14 +908,14 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
               &ldquo;{acc.tagline}&rdquo;
             </motion.p>
           </div>
-          {acc.image && (
+          {acc.icon && (
             <motion.div
-              className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-[#1A2B45] border border-[#1E3A5F] flex items-center justify-center p-2"
+              className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center bg-primary/10"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' as const }}
             >
-              <Image src={acc.image} alt={acc.name} width={52} height={52} className="object-contain" unoptimized />
+              <acc.icon className="h-8 w-8 text-primary" strokeWidth={1.5} />
             </motion.div>
           )}
         </div>
@@ -926,11 +929,11 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, delay: 0.3, ease: 'easeOut' as const }}
           >
-            <div className="bg-[#1A2B45] rounded-xl p-5 border border-[#1E3A5F] flex-1">
+            <div className="bg-card rounded-xl p-5 border border-border flex-1">
               <div className="text-xs font-bold uppercase tracking-widest text-white mb-3">Overview</div>
               <p className="text-slate-400 text-sm leading-relaxed">{acc.description}</p>
             </div>
-            <div className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]">
+            <div className="bg-card rounded-xl p-4 border border-border">
               <div className="text-xs font-bold uppercase tracking-widest text-white mb-2">Ideal For</div>
               <p className="text-slate-400 text-xs leading-relaxed">{acc.idealFor}</p>
             </div>
@@ -938,7 +941,7 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
 
           {/* Col 2: Capabilities */}
           <motion.div
-            className="bg-[#1A2B45] rounded-xl p-5 border border-[#1E3A5F]"
+            className="bg-card rounded-xl p-5 border border-border"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.38, ease: 'easeOut' as const }}
@@ -967,7 +970,7 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
 
           {/* Col 3: Results */}
           <motion.div
-            className="bg-[#1A2B45] rounded-xl p-5 border border-[#1E3A5F]"
+            className="bg-card rounded-xl p-5 border border-border"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, delay: 0.45, ease: 'easeOut' as const }}
@@ -978,7 +981,7 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
               {acc.results.stats.map((stat, si) => (
                 <motion.div
                   key={stat.label}
-                  className="bg-[#0F1B2D] rounded-xl p-4 border border-[#1E3A5F] text-center"
+                  className="bg-background rounded-xl p-4 border border-border text-center"
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.58 + si * 0.1, ease: 'easeOut' as const }}
@@ -999,14 +1002,14 @@ function AcceleratorDetailSlide({ acc, index }: AcceleratorDetailProps) {
 
 function PrahariSlide() {
   const capabilities = [
-    { title: 'Agent Activity Monitoring', desc: 'Real-time surveillance of every AI agent action across your operations — flagging anomalies before they escalate.' },
+    { title: 'Agent Activity Monitoring', desc: 'Real-time surveillance of every AI agent action across your operations - flagging anomalies before they escalate.' },
     { title: 'Transaction-Level Oversight', desc: 'Every transaction scanned against compliance rules and risk thresholds, automatically, without human review bottlenecks.' },
-    { title: 'Regulatory Rule Engine', desc: 'Continuously updated rule sets mapped to current regulations — BSA, AML, KYC, CFPB — with zero manual maintenance.' },
+    { title: 'Regulatory Rule Engine', desc: 'Continuously updated rule sets mapped to current regulations - BSA, AML, KYC, CFPB - with zero manual maintenance.' },
     { title: 'Audit-Ready Reporting', desc: 'Examiner-grade audit trails generated automatically. Every decision logged, every flag documented, every resolution tracked.' },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-14">
       <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-[#8B5CF6]/6 blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#8B5CF6]/4 blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
       <LogoWatermark />
@@ -1027,7 +1030,7 @@ function PrahariSlide() {
           </div>
           <p className="text-slate-300 text-sm leading-relaxed">
             Every agent. Every transaction. Every regulation. Watched. Prahari is the always-on
-            compliance sentinel that monitors AI agents and financial operations in real time —
+            compliance sentinel that monitors AI agents and financial operations in real time -
             so nothing slips past your risk perimeter.
           </p>
           <motion.div
@@ -1040,13 +1043,13 @@ function PrahariSlide() {
               { value: '24/7', label: 'Continuous Watch' },
               { value: '100%', label: 'Transaction Coverage' },
             ].map((s) => (
-              <div key={s.label} className="bg-[#1A2B45] rounded-xl p-3 border border-[#1E3A5F] text-center">
+              <div key={s.label} className="bg-card rounded-xl p-3 border border-border text-center">
                 <div className="text-xl font-black text-[#8B5CF6]">{s.value}</div>
                 <div className="text-[10px] text-slate-400 mt-0.5">{s.label}</div>
               </div>
             ))}
           </motion.div>
-          <div className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]">
+          <div className="bg-card rounded-xl p-4 border border-border">
             <div className="text-xs font-bold uppercase tracking-widest text-white mb-2">Ideal For</div>
             <p className="text-slate-400 text-xs leading-relaxed">
               Banks, credit unions, and fintechs deploying AI agents who need compliance
@@ -1067,7 +1070,7 @@ function PrahariSlide() {
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.title}
-                className="bg-[#1A2B45] rounded-xl p-4 border border-[#1E3A5F]"
+                className="bg-card rounded-xl p-4 border border-border"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.38 + i * 0.08, ease: 'easeOut' as const }}
@@ -1079,7 +1082,7 @@ function PrahariSlide() {
             ))}
           </div>
           <motion.div
-            className="bg-[#1A2B45] rounded-xl p-4 border border-[#8B5CF6]/20 flex items-center gap-4"
+            className="bg-card rounded-xl p-4 border border-[#8B5CF6]/20 flex items-center gap-4"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.72, ease: 'easeOut' as const }}
@@ -1089,7 +1092,7 @@ function PrahariSlide() {
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
               <span className="text-white font-medium">FinZpire 2026 showcase product.</span>{' '}
-              Prahari is the back-office sentinel layer in the Theoremlabs agentic banking stack —
+              Prahari is the back-office sentinel layer in the Theoremlabs agentic banking stack -
               alongside PromptLine (front office) and Tacit (document intelligence).
             </p>
           </motion.div>
@@ -1107,12 +1110,12 @@ function AdvisorySlide() {
     { icon: '⚙️', title: 'Operating Model Design', desc: 'Redesign processes and org structures to embrace AI-native ways of working.' },
     { icon: '🔍', title: 'Technology Due Diligence', desc: 'Evaluate AI vendors, platforms, and architectures with practitioner rigour.' },
     { icon: '🔄', title: 'Change Management', desc: 'Guide leadership and teams through cultural and workflow shifts that AI demands.' },
-    { icon: '⚖️', title: 'Regulatory & Risk Advisory', desc: 'Navigate AI compliance in financial services — Model Risk, Fairness, Explainability.' },
+    { icon: '⚖️', title: 'Regulatory & Risk Advisory', desc: 'Navigate AI compliance in financial services - Model Risk, Fairness, Explainability.' },
     { icon: '🎓', title: 'Executive Education', desc: 'Upskill C-suite and senior leaders on AI literacy, strategy, and competitive positioning.' },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl">
@@ -1120,14 +1123,14 @@ function AdvisorySlide() {
           <div className="mb-4"><Badge color="blue">Advisory &amp; Consulting</Badge></div>
           <Heading delay={0.1}>Strategy Meets Execution</Heading>
           <div className="mt-4 max-w-2xl mx-auto">
-            <Sub delay={0.22}>We don&apos;t just advise — we roll up our sleeves and build alongside you</Sub>
+            <Sub delay={0.22}>We don&apos;t just advise - we roll up our sleeves and build alongside you</Sub>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-5">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
-              className="bg-[#1A2B45] rounded-xl p-6 border border-[#1E3A5F]"
+              className="bg-card rounded-xl p-6 border border-border"
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.32 + i * 0.09, ease: 'easeOut' as const }}
@@ -1148,13 +1151,13 @@ function AdvisorySlide() {
 function ArtOfPossibleSlide() {
   const phases = [
     { num: '01', title: 'Discover', desc: 'Deep-dive workshops to identify high-value AI opportunities within your organisation.' },
-    { num: '02', title: 'Prototype', desc: 'Rapid, low-risk experiments that prove concepts in days — not months.' },
+    { num: '02', title: 'Prototype', desc: 'Rapid, low-risk experiments that prove concepts in days - not months.' },
     { num: '03', title: 'Validate', desc: 'Rigorous testing with real data and users to confirm business value before scaling.' },
     { num: '04', title: 'Launch', desc: 'Production-grade deployment with full documentation, handover, and ongoing support.' },
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-16">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-16">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-6xl">
@@ -1174,13 +1177,13 @@ function ArtOfPossibleSlide() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 + i * 0.15, ease: 'easeOut' as const }}
             >
-              <div className="bg-[#1A2B45] rounded-2xl p-7 border border-[#1E3A5F] h-full">
-                <div className="text-5xl font-black text-[#F97316]/20 mb-4">{phase.num}</div>
+              <div className="bg-card rounded-2xl p-7 border border-border h-full">
+                <div className="text-5xl font-black text-primary/20 mb-4">{phase.num}</div>
                 <h3 className="text-xl font-bold text-white mb-3">{phase.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{phase.desc}</p>
               </div>
               {i < phases.length - 1 && (
-                <div className="absolute top-1/2 -right-3 z-10 text-[#F97316] text-xl font-bold -translate-y-1/2">→</div>
+                <div className="absolute top-1/2 -right-3 z-10 text-primary text-xl font-bold -translate-y-1/2">→</div>
               )}
             </motion.div>
           ))}
@@ -1199,7 +1202,7 @@ function CodingLoopsSlide() {
       sub: 'Naive Persistence',
       color: '#EF4444',
       badge: 'Copilot',
-      desc: 'Single long-running agent context. Simple but prone to context rot — degraded output quality as token windows fill.',
+      desc: 'Single long-running agent context. Simple but prone to context rot - degraded output quality as token windows fill.',
       level: '33%',
       levelLabel: 'Low Autonomy',
     },
@@ -1224,7 +1227,7 @@ function CodingLoopsSlide() {
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-16">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-16">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-6xl">
@@ -1235,14 +1238,14 @@ function CodingLoopsSlide() {
             <span className="text-[#10B981]">Autopilot</span>
           </Heading>
           <div className="mt-4 max-w-2xl mx-auto">
-            <Sub delay={0.22}>The Agentic Shift 2026 framework — how teams move from AI assistance to AI autonomy</Sub>
+            <Sub delay={0.22}>The Agentic Shift 2026 framework - how teams move from AI assistance to AI autonomy</Sub>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-6">
           {loops.map((loop, i) => (
             <motion.div
               key={loop.name}
-              className="bg-[#1A2B45] rounded-2xl p-7 border-2 flex flex-col"
+              className="bg-card rounded-2xl p-7 border-2 flex flex-col"
               style={{ borderColor: `${loop.color}35` }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1258,7 +1261,7 @@ function CodingLoopsSlide() {
               <div className="text-sm font-medium mb-4" style={{ color: loop.color }}>{loop.sub}</div>
               <p className="text-slate-400 text-sm leading-relaxed flex-1">{loop.desc}</p>
               <div className="mt-6">
-                <div className="w-full h-1.5 rounded-full bg-[#0F1B2D] mb-1.5">
+                <div className="w-full h-1.5 rounded-full bg-background mb-1.5">
                   <div className="h-full rounded-full" style={{ width: loop.level, backgroundColor: loop.color }} />
                 </div>
                 <div className="text-xs text-slate-500 text-right">{loop.levelLabel}</div>
@@ -1298,7 +1301,7 @@ function AITechnologiesSlide() {
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl">
@@ -1313,7 +1316,7 @@ function AITechnologiesSlide() {
           {techs.map((tech, i) => (
             <motion.div
               key={tech.category}
-              className="bg-[#1A2B45] rounded-2xl p-6 border border-[#1E3A5F]"
+              className="bg-card rounded-2xl p-6 border border-border"
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.32 + i * 0.12, ease: 'easeOut' as const }}
@@ -1349,7 +1352,7 @@ function OurTeamSlide() {
   ];
 
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
+    <div className="relative w-full h-full bg-background overflow-hidden flex flex-col items-center justify-center px-8 md:px-14">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 w-full max-w-7xl">
@@ -1369,7 +1372,7 @@ function OurTeamSlide() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.32 + i * 0.1, ease: 'easeOut' as const }}
             >
-              <div className="w-28 h-28 rounded-2xl overflow-hidden bg-[#1A2B45] border-2 border-[#1E3A5F] mb-4">
+              <div className="w-28 h-28 rounded-2xl overflow-hidden bg-card border-2 border-border mb-4">
                 <Image src={member.img} alt={member.name} width={112} height={112} className="object-cover w-full h-full" />
               </div>
               <h3 className="text-white font-semibold text-sm leading-snug mb-1">{member.name}</h3>
@@ -1386,7 +1389,7 @@ function OurTeamSlide() {
 
 function TestimonialSlide() {
   return (
-    <div className="relative w-full h-full bg-[#0F1B2D] overflow-hidden flex items-center justify-center px-10 md:px-24">
+    <div className="relative w-full h-full bg-background overflow-hidden flex items-center justify-center px-10 md:px-24">
       <Orbs />
       <LogoWatermark />
       <div className="relative z-10 max-w-4xl text-center">
@@ -1406,7 +1409,7 @@ function TestimonialSlide() {
         >
           &ldquo;It&apos;s going to be interesting to see how society deals with artificial
           intelligence, but it will definitely be{' '}
-          <em className="text-[#F97316] not-italic font-bold">cool.</em>&rdquo;
+          <em className="text-primary not-italic font-bold">cool.</em>&rdquo;
         </motion.blockquote>
         <motion.div
           className="flex items-center justify-center gap-5"
@@ -1414,12 +1417,12 @@ function TestimonialSlide() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.85, delay: 0.52, ease: 'easeOut' as const }}
         >
-          <div className="w-16 h-px bg-[#F97316]" />
+          <div className="w-16 h-px bg-primary" />
           <div>
             <div className="text-white font-semibold text-xl">Colin Angle</div>
             <div className="text-slate-400 text-sm">CEO of iRobot</div>
           </div>
-          <div className="w-16 h-px bg-[#F97316]" />
+          <div className="w-16 h-px bg-primary" />
         </motion.div>
       </div>
     </div>
@@ -1431,9 +1434,9 @@ function TestimonialSlide() {
 function ContactSlide() {
   return (
     <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B45] to-[#0F1B2D]" />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-[#F97316]/8 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#3B82F6]/8 blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/8 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/8 blur-3xl pointer-events-none" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-10">
         <motion.div
           initial={{ opacity: 0, y: -24 }}
@@ -1456,7 +1459,7 @@ function ContactSlide() {
           transition={{ duration: 0.85, delay: 0.15, ease: 'easeOut' as const }}
         >
           Let&apos;s Build the<br />
-          <span className="text-[#F97316]">Future Together</span>
+          <span className="text-primary">Future Together</span>
         </motion.h2>
         <motion.p
           className="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed"
@@ -1468,7 +1471,7 @@ function ContactSlide() {
           solutions, and unlock the full potential of your data.
         </motion.p>
         <motion.div
-          className="flex flex-wrap items-stretch justify-center rounded-2xl overflow-hidden border border-[#1E3A5F] mb-10"
+          className="flex flex-wrap items-stretch justify-center rounded-2xl overflow-hidden border border-border mb-10"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.45, ease: 'easeOut' as const }}
@@ -1480,15 +1483,15 @@ function ContactSlide() {
           ].map((item, i) => (
             <div
               key={item.label}
-              className={cn('bg-[#1A2B45] px-10 py-6 text-center', i > 0 && 'border-l border-[#1E3A5F]')}
+              className={cn('bg-card px-10 py-6 text-center', i > 0 && 'border-l border-border')}
             >
-              <div className="text-[#F97316] font-semibold text-xs uppercase tracking-wider mb-2">{item.label}</div>
+              <div className="text-primary font-semibold text-xs uppercase tracking-wider mb-2">{item.label}</div>
               <div className="text-slate-300 text-sm whitespace-pre-line leading-relaxed">{item.value}</div>
             </div>
           ))}
         </motion.div>
         <motion.div
-          className="px-10 py-4 rounded-full bg-[#F97316] text-white font-bold text-lg"
+          className="px-10 py-4 rounded-full bg-primary text-white font-bold text-lg"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.62, ease: 'easeOut' as const }}
@@ -1578,7 +1581,7 @@ export default function SlideshowPage() {
   return (
     <div
       className={cn(
-        'fixed inset-0 z-[9999] bg-[#0F1B2D] overflow-hidden',
+        'fixed inset-0 z-[9999] bg-background overflow-hidden',
         exportMode ? 'cursor-none' : showControls ? 'cursor-default' : 'cursor-none',
       )}
       onMouseMove={handleMouseMove}
@@ -1601,7 +1604,7 @@ export default function SlideshowPage() {
       {!exportMode && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-white/10 z-50">
         <motion.div
           key={`progress-${currentIndex}`}
-          className="h-full bg-[#F97316]"
+          className="h-full bg-primary"
           initial={{ width: '0%' }}
           animate={isPlaying ? { width: '100%' } : {}}
           transition={{ duration: SLIDES[currentIndex].duration / 1000, ease: 'linear' as const }}
@@ -1660,7 +1663,7 @@ export default function SlideshowPage() {
                   className={cn(
                     'h-1.5 rounded-full transition-all duration-300',
                     i === currentIndex
-                      ? 'bg-[#F97316] w-6'
+                      ? 'bg-primary w-6'
                       : 'bg-white/30 hover:bg-white/60 w-1.5',
                   )}
                 />

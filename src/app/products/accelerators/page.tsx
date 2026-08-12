@@ -1,14 +1,15 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Scale, BookOpen, Database, Sparkles, Phone } from 'lucide-react';
 import { PageHero } from '@/components/shared/PageHero';
 import { CTAButton } from '@/components/shared/CTAButton';
 import { SectionHeader } from '@/components/shared/SectionHeader';
+import { CheckBadge } from '@/components/shared/CheckBadge';
 
 export const metadata: Metadata = {
   title: 'Accelerators | Theoremlabs',
   description:
-    'Pre-built AI accelerators for Fintech. Ten production-ready tools — each with proven results — that compress months of development into weeks.',
+    'Pre-built AI accelerators for Fintech. Ten production-ready tools - each with proven results - that compress months of development into weeks.',
 };
 
 interface Stat {
@@ -27,7 +28,7 @@ interface Accelerator {
     stats: Stat[];
   };
   idealFor: string;
-  image?: string;
+  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
 }
 
 const accelerators: Accelerator[] = [
@@ -36,7 +37,7 @@ const accelerators: Accelerator[] = [
     subtitle: 'Intelligent Data Reconciliation',
     tagline: 'Automate complex reconciliation processes with AI precision',
     description:
-      'Automates the end-to-end reconciliation process across financial, inventory, and compliance data. Using a blend of rules and AI, it matches large datasets, flags discrepancies, and generates audit-ready summaries — accelerating close cycles and reducing manual workloads.',
+      'Automates the end-to-end reconciliation process across financial, inventory, and compliance data. Using a blend of rules and AI, it matches large datasets, flags discrepancies, and generates audit-ready summaries - accelerating close cycles and reducing manual workloads.',
     capabilities: [
       'Automated matching and exception handling',
       'AI-powered anomaly detection',
@@ -53,14 +54,14 @@ const accelerators: Accelerator[] = [
       ],
     },
     idealFor: 'Banks, fintechs, and enterprise accounting teams',
-    image: '/images/product-reconcile-ai.gif',
+    icon: Scale,
   },
   {
     name: 'KnowledgePulse',
     subtitle: 'Dynamic Knowledge Management',
     tagline: 'Turn tribal knowledge into intelligent support systems',
     description:
-      'Converts static documents and support material into a dynamic, searchable knowledge base. Powered by RAG and NLP, it drives intelligent FAQs, contextual help, and customer support bots. As documentation evolves, the knowledge base updates automatically — ensuring real-time accuracy.',
+      'Converts static documents and support material into a dynamic, searchable knowledge base. Powered by RAG and NLP, it drives intelligent FAQs, contextual help, and customer support bots. As documentation evolves, the knowledge base updates automatically - ensuring real-time accuracy.',
     capabilities: [
       'Dynamic, searchable knowledge base',
       'AI-powered FAQ generation',
@@ -77,14 +78,14 @@ const accelerators: Accelerator[] = [
       ],
     },
     idealFor: 'SaaS, enterprise IT, and service organizations',
-    image: '/images/product-knowledge-pulse.gif',
+    icon: BookOpen,
   },
   {
     name: 'InsightBridge',
     subtitle: 'Legacy System Knowledge Extraction',
     tagline: 'Bridge the gap between old infrastructure and modern AI workflows',
     description:
-      'Extracts and modernizes knowledge trapped in legacy systems — mainframes, aging databases, and undocumented codebases. InsightBridge creates a structured, queryable knowledge layer on top of your existing estate so teams can move forward without starting from scratch.',
+      'Extracts and modernizes knowledge trapped in legacy systems - mainframes, aging databases, and undocumented codebases. InsightBridge creates a structured, queryable knowledge layer on top of your existing estate so teams can move forward without starting from scratch.',
     capabilities: [
       'Legacy system knowledge extraction',
       'Automated documentation generation',
@@ -101,7 +102,7 @@ const accelerators: Accelerator[] = [
       ],
     },
     idealFor: 'Enterprises with legacy mainframes, aging core systems, or undocumented codebases',
-    image: '/images/product-insight-bridge.gif',
+    icon: Database,
   },
   {
     name: 'SyntheticEdge',
@@ -125,14 +126,14 @@ const accelerators: Accelerator[] = [
       ],
     },
     idealFor: 'Healthcare, banking, and insurance sectors with sensitive data requirements',
-    image: '/images/product-synthetic-edge.gif',
+    icon: Sparkles,
   },
   {
     name: 'PromptLine',
     subtitle: 'Conversational AI Phone & Text',
     tagline: 'Intelligent voice and text interfaces for financial services',
     description:
-      'AI-powered voice and text interfaces that handle customer queries, route complex cases, and integrate with core banking systems — 24/7, without agent involvement. PromptLine replaces rigid IVR systems with natural, contextually aware conversations that resolve issues and take action in real time.',
+      'AI-powered voice and text interfaces that handle customer queries, route complex cases, and integrate with core banking systems - 24/7, without agent involvement. PromptLine replaces rigid IVR systems with natural, contextually aware conversations that resolve issues and take action in real time.',
     capabilities: [
       'Natural AI voice call handling',
       'SMS and text automation',
@@ -149,14 +150,14 @@ const accelerators: Accelerator[] = [
       ],
     },
     idealFor: 'Banks, credit unions, and financial services with high inbound call or SMS volume',
-    image: '/images/product-prompt-line.gif',
+    icon: Phone,
   },
   {
     name: 'Shared Service Marketplace',
     subtitle: 'Centralized Customer Communications',
     tagline: 'Automate 20+ operations-driven communications from one place',
     description:
-      'Centralizes customer communication workflows — NSF notices, maturity reminders, tax statements, and more — into a single branded, compliance-ready hub. Triggers messages across email, SMS, and print from one platform, standardizing communications across lines of business and reducing operational risk.',
+      'Centralizes customer communication workflows - NSF notices, maturity reminders, tax statements, and more - into a single branded, compliance-ready hub. Triggers messages across email, SMS, and print from one platform, standardizing communications across lines of business and reducing operational risk.',
     capabilities: [
       'Centralized communication management',
       'Multi-channel delivery (email, SMS, print)',
@@ -179,7 +180,7 @@ const accelerators: Accelerator[] = [
     subtitle: 'Regulatory Compliance',
     tagline: 'Your virtual compliance analyst working 24/7',
     description:
-      'An AI-powered digital twin that monitors regulatory changes and automates the impact analysis process. It identifies affected policies, controls, and stakeholders, drafts recommendations, and routes tasks for review — integrating with enterprise collaboration and compliance platforms to orchestrate end-to-end response workflows.',
+      'An AI-powered digital twin that monitors regulatory changes and automates the impact analysis process. It identifies affected policies, controls, and stakeholders, drafts recommendations, and routes tasks for review - integrating with enterprise collaboration and compliance platforms to orchestrate end-to-end response workflows.',
     capabilities: [
       'Automated regulatory change monitoring',
       'AI-powered impact analysis',
@@ -225,7 +226,7 @@ const accelerators: Accelerator[] = [
     subtitle: 'Conversational Web Assistant',
     tagline: 'Your website, now talkable',
     description:
-      'A web-embedded AI assistant that brings conversational UX to any website. Handles FAQs, directs users to forms, guides them through processes, and triggers calculators or actions — enhancing self-service experiences and increasing conversion by removing friction from navigation.',
+      'A web-embedded AI assistant that brings conversational UX to any website. Handles FAQs, directs users to forms, guides them through processes, and triggers calculators or actions - enhancing self-service experiences and increasing conversion by removing friction from navigation.',
     capabilities: [
       'Conversational website navigation',
       'Intelligent FAQ handling',
@@ -274,39 +275,33 @@ const arrowSvg = (
   </svg>
 );
 
-const checkSvg = (
-  <svg className="h-3 w-3 text-[#F97316]" fill="currentColor" viewBox="0 0 12 12" aria-hidden="true">
-    <path d="M10.28 2.28a.75.75 0 00-1.06 0L4.5 7l-1.72-1.72a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.06 0l5.25-5.25a.75.75 0 000-1.06z" />
-  </svg>
-);
-
 export default function AcceleratorsPage() {
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       <PageHero
         eyebrow="Products"
         title="AI Accelerators"
-        subtitle="Ten production-ready AI tools — each with proven results — that compress months of development into weeks. Built specifically for Fintech."
+        subtitle="Ten production-ready AI tools - each with proven results - that compress months of development into weeks. Built specifically for Fintech."
       />
 
       {/* Intro */}
       <section className="py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col gap-10 md:flex-row md:items-center md:gap-16">
-          <p className="text-[#94A3B8] text-lg leading-relaxed md:w-1/2">
+          <p className="text-muted-foreground text-lg leading-relaxed md:w-1/2">
             Theoremlabs accelerators are purpose-built AI modules designed to eliminate the
             repetitive groundwork that slows Fintech teams down. Rather than starting from scratch,
             you get a battle-tested foundation that integrates with your existing stack and adapts
-            to your domain — with every accelerator backed by real deployment results.
+            to your domain - with every accelerator backed by real deployment results.
           </p>
-          <div className="grid grid-cols-3 gap-px bg-[#1E3A5F] rounded-xl overflow-hidden md:w-1/2">
+          <div className="grid grid-cols-3 gap-px bg-border rounded-xl overflow-hidden md:w-1/2">
             {[
               { value: '10', label: 'Accelerators' },
               { value: 'Weeks', label: 'Not months' },
               { value: '100%', label: 'Fintech-built' },
             ].map((s) => (
-              <div key={s.label} className="bg-[#1A2B45] px-4 py-6 text-center">
-                <p className="text-2xl font-bold text-[#F97316]">{s.value}</p>
-                <p className="text-xs text-[#94A3B8] mt-1">{s.label}</p>
+              <div key={s.label} className="bg-card px-4 py-6 text-center">
+                <p className="text-2xl font-bold text-primary">{s.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
               </div>
             ))}
           </div>
@@ -322,52 +317,43 @@ export default function AcceleratorsPage() {
             align="left"
           />
 
-          {accelerators.map((acc) => (
+          {accelerators.map((acc) => {
+            const Icon = acc.icon;
+            return (
             <article
               key={acc.name}
-              className="rounded-2xl border border-[#1E3A5F] bg-[#1A2B45] overflow-hidden transition-colors duration-200 hover:border-[#F97316]/40"
+              className="rounded-2xl border border-border bg-card overflow-hidden transition-colors duration-200 hover:border-primary/40"
             >
               <div className="flex flex-col gap-0 lg:flex-row">
                 {/* Left: Identity + description + capabilities */}
-                <div className="flex flex-col gap-6 p-7 lg:w-1/2 lg:border-r lg:border-[#1E3A5F]">
+                <div className="flex flex-col gap-6 p-7 lg:w-1/2 lg:border-r lg:border-border">
                   {/* Header */}
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                       {acc.subtitle}
                     </span>
-                    <h2 className="text-2xl font-bold text-[#F8FAFC] tracking-tight">{acc.name}</h2>
-                    <p className="text-sm italic text-[#94A3B8] mt-0.5">&ldquo;{acc.tagline}&rdquo;</p>
+                    <h2 className="text-2xl font-bold text-foreground tracking-tight">{acc.name}</h2>
+                    <p className="text-sm italic text-muted-foreground mt-0.5">&ldquo;{acc.tagline}&rdquo;</p>
                   </div>
 
-                  {/* GIF if available */}
-                  {acc.image && (
-                    <div className="self-start rounded-xl bg-[#0F1B2D] border border-[#1E3A5F] p-3">
-                      <Image
-                        src={acc.image}
-                        alt={`${acc.name} preview`}
-                        width={64}
-                        height={64}
-                        className="object-contain"
-                        unoptimized
-                        sizes="64px"
-                        loading="lazy"
-                      />
+                  {/* Icon if available */}
+                  {Icon && (
+                    <div className="self-start flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+                      <Icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
                     </div>
                   )}
 
                   {/* Description */}
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">{acc.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{acc.description}</p>
 
                   {/* Capabilities */}
                   <div className="flex flex-col gap-2">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#F8FAFC]">Key Capabilities</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-foreground">Key Capabilities</p>
                     <ul className="flex flex-col gap-2">
                       {acc.capabilities.map((cap) => (
                         <li key={cap} className="flex items-start gap-2.5">
-                          <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-[#F97316]/15">
-                            {checkSvg}
-                          </span>
-                          <span className="text-sm text-[#F8FAFC]">{cap}</span>
+                          <CheckBadge className="mt-0.5 h-4 w-4" />
+                          <span className="text-sm text-foreground">{cap}</span>
                         </li>
                       ))}
                     </ul>
@@ -378,20 +364,20 @@ export default function AcceleratorsPage() {
                 <div className="flex flex-col gap-6 p-7 lg:w-1/2">
                   {/* Results */}
                   <div className="flex flex-col gap-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#F8FAFC]">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-foreground">
                       Proven Results
-                      <span className="ml-2 text-[#94A3B8] normal-case tracking-normal font-normal">
-                        — {acc.results.context}
+                      <span className="ml-2 text-muted-foreground normal-case tracking-normal font-normal">
+                        - {acc.results.context}
                       </span>
                     </p>
                     <div className="grid grid-cols-3 gap-3">
                       {acc.results.stats.map((stat) => (
                         <div
                           key={stat.label}
-                          className="flex flex-col items-center gap-1 rounded-xl bg-[#0F1B2D] border border-[#1E3A5F] px-3 py-4 text-center"
+                          className="flex flex-col items-center gap-1 rounded-xl bg-background border border-border px-3 py-4 text-center"
                         >
-                          <span className="text-xl font-bold text-[#F97316] leading-tight">{stat.value}</span>
-                          <span className="text-xs text-[#94A3B8] leading-tight">{stat.label}</span>
+                          <span className="text-xl font-bold text-primary leading-tight">{stat.value}</span>
+                          <span className="text-xs text-muted-foreground leading-tight">{stat.label}</span>
                         </div>
                       ))}
                     </div>
@@ -399,15 +385,15 @@ export default function AcceleratorsPage() {
 
                   {/* Ideal For */}
                   <div className="flex flex-col gap-2">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#F8FAFC]">Ideal For</p>
-                    <p className="text-sm text-[#94A3B8]">{acc.idealFor}</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-foreground">Ideal For</p>
+                    <p className="text-sm text-muted-foreground">{acc.idealFor}</p>
                   </div>
 
                   {/* CTA */}
-                  <div className="mt-auto pt-4 border-t border-[#1E3A5F]">
+                  <div className="mt-auto pt-4 border-t border-border">
                     <Link
                       href="/engage/contact"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-[#F97316] transition-colors duration-200 hover:text-[#ea6a0a]"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors duration-200 hover:text-[#ea6a0a]"
                     >
                       Discuss This Accelerator
                       {arrowSvg}
@@ -416,26 +402,26 @@ export default function AcceleratorsPage() {
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* Bottom CTA banner */}
       <section className="px-4 pb-20 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-xl bg-[#1A2B45] p-8 text-center border border-[#1E3A5F]">
-            <h2 className="mb-3 text-3xl font-bold tracking-tight text-[#F8FAFC] md:text-4xl">
-              Ready to accelerate?
-            </h2>
-            <p className="mb-8 text-base leading-relaxed text-[#94A3B8] max-w-xl mx-auto">
-              Let&apos;s identify which accelerators fit your roadmap and get you moving faster.
-            </p>
+          <div className="rounded-xl bg-card p-8 border border-border flex flex-col items-center gap-6">
+            <SectionHeader
+              title="Ready to accelerate?"
+              subtitle="Let's identify which accelerators fit your roadmap and get you moving faster."
+              align="center"
+            />
             <CTAButton href="/engage/contact" variant="primary">
               Get in Touch
             </CTAButton>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

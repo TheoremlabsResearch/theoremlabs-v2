@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Linkedin, Twitter, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Mail, MapPin } from 'lucide-react';
 import { PageHero } from '@/components/shared/PageHero';
+import { VimeoIcon } from '@/components/shared/VimeoIcon';
 import { cn } from '@/lib/utils';
 
 interface FormFields {
@@ -22,12 +23,14 @@ const initialFields: FormFields = {
 };
 
 const inputClass =
-  'bg-[#1A2B45] border border-[#1E3A5F] text-[#F8FAFC] rounded-lg px-4 py-3 w-full ' +
-  'focus:border-[#F97316] focus:outline-none transition-colors placeholder:text-[#94A3B8]';
+  'bg-card border border-border text-foreground rounded-lg px-4 py-3 w-full ' +
+  'focus:border-primary focus:outline-none transition-colors placeholder:text-muted-foreground';
 
 export default function ContactPage() {
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,13 +39,33 @@ export default function ContactPage() {
     setFields((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error ?? 'Something went wrong. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
-    <main className="bg-[#0F1B2D] min-h-screen">
+    <div className="bg-background min-h-screen">
       {/* Hero */}
       <PageHero
         eyebrow="Engage"
@@ -58,15 +81,15 @@ export default function ContactPage() {
             {/* LEFT — Company info */}
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-3">
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                   Our Office
                 </span>
                 <div className="flex items-start gap-3">
                   <MapPin
-                    className="h-5 w-5 text-[#F97316] mt-0.5 flex-shrink-0"
+                    className="h-5 w-5 text-primary mt-0.5 flex-shrink-0"
                     aria-hidden="true"
                   />
-                  <address className="not-italic text-[#F8FAFC] text-base leading-relaxed">
+                  <address className="not-italic text-foreground text-base leading-relaxed">
                     <span className="font-semibold block">Theoremlabs Partners LLC</span>
                     101 S. Tryon St, STE 2700
                     <br />
@@ -76,53 +99,57 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col gap-3">
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                   Email Us
                 </span>
                 <a
-                  href="mailto:info@theoremlabs.io"
-                  className="flex items-center gap-3 text-[#F8FAFC] text-base hover:text-[#F97316] transition-colors"
+                  href="mailto:imagine@theoremlabs.io"
+                  className="flex items-center gap-3 text-foreground text-base hover:text-primary transition-colors"
                 >
-                  <Mail className="h-5 w-5 text-[#F97316] flex-shrink-0" aria-hidden="true" />
-                  info@theoremlabs.io
+                  <Mail className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
+                  imagine@theoremlabs.io
                 </a>
               </div>
 
               <div className="flex flex-col gap-4">
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                   Also Find Us At
                 </span>
                 <div className="flex items-center gap-4">
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/theoremlabs-io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Theoremlabs on LinkedIn"
                     className={cn(
                       'flex h-11 w-11 items-center justify-center rounded-lg',
-                      'bg-[#1A2B45] border border-[#1E3A5F]',
-                      'text-[#94A3B8] hover:text-[#F97316] hover:border-[#F97316]',
+                      'bg-card border border-border',
+                      'text-muted-foreground hover:text-primary hover:border-primary',
                       'transition-colors duration-200'
                     )}
                   >
                     <Linkedin className="h-5 w-5" aria-hidden="true" />
                   </a>
                   <a
-                    href="#"
-                    aria-label="Theoremlabs on Twitter"
+                    href="https://vimeo.com/user222655519"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Theoremlabs on Vimeo"
                     className={cn(
                       'flex h-11 w-11 items-center justify-center rounded-lg',
-                      'bg-[#1A2B45] border border-[#1E3A5F]',
-                      'text-[#94A3B8] hover:text-[#F97316] hover:border-[#F97316]',
+                      'bg-card border border-border',
+                      'text-muted-foreground hover:text-primary hover:border-primary',
                       'transition-colors duration-200'
                     )}
                   >
-                    <Twitter className="h-5 w-5" aria-hidden="true" />
+                    <VimeoIcon size={20} />
                   </a>
                 </div>
               </div>
 
               {/* Decorative divider card */}
-              <div className="hidden md:block rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-6">
-                <p className="text-[#94A3B8] text-sm leading-relaxed">
+              <div className="hidden md:block rounded-xl bg-card border border-border p-6">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   We typically respond within one business day. For time-sensitive matters, please
                   include that context in your message and we will prioritize accordingly.
                 </p>
@@ -132,20 +159,20 @@ export default function ContactPage() {
             {/* RIGHT — Contact form */}
             <div
               className={cn(
-                'rounded-xl bg-[#1A2B45] border border-[#1E3A5F] p-8 md:p-10',
+                'rounded-xl bg-card border border-border p-8 md:p-10',
                 'flex flex-col gap-6'
               )}
             >
               {submitted ? (
                 /* Success state */
                 <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0F1B2D] border border-[#F97316]">
-                    <Mail className="h-7 w-7 text-[#F97316]" aria-hidden="true" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background border border-primary">
+                    <Mail className="h-7 w-7 text-primary" aria-hidden="true" />
                   </div>
-                  <h2 className="text-2xl font-bold text-[#F8FAFC] tracking-tight">
+                  <h2 className="text-2xl font-bold text-foreground tracking-tight">
                     Thanks! We&apos;ll be in touch.
                   </h2>
-                  <p className="text-[#94A3B8] text-sm leading-relaxed max-w-xs">
+                  <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                     Your message has been received. A member of the Theoremlabs team will reach out
                     within one business day.
                   </p>
@@ -154,10 +181,10 @@ export default function ContactPage() {
                 /* Form */
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316] mb-1">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-1">
                       Send Us a Message
                     </span>
-                    <p className="text-[#94A3B8] text-sm leading-relaxed">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       Fill in the form below and we will get back to you promptly.
                     </p>
                   </div>
@@ -167,9 +194,9 @@ export default function ContactPage() {
                     <div className="flex flex-col gap-1.5">
                       <label
                         htmlFor="firstName"
-                        className="text-[#F8FAFC] text-sm font-medium"
+                        className="text-foreground text-sm font-medium"
                       >
-                        First Name <span className="text-[#F97316]">*</span>
+                        First Name <span className="text-primary">*</span>
                       </label>
                       <input
                         id="firstName"
@@ -185,9 +212,9 @@ export default function ContactPage() {
                     <div className="flex flex-col gap-1.5">
                       <label
                         htmlFor="lastName"
-                        className="text-[#F8FAFC] text-sm font-medium"
+                        className="text-foreground text-sm font-medium"
                       >
-                        Last Name <span className="text-[#F97316]">*</span>
+                        Last Name <span className="text-primary">*</span>
                       </label>
                       <input
                         id="lastName"
@@ -204,8 +231,8 @@ export default function ContactPage() {
 
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-[#F8FAFC] text-sm font-medium">
-                      Email <span className="text-[#F97316]">*</span>
+                    <label htmlFor="email" className="text-foreground text-sm font-medium">
+                      Email <span className="text-primary">*</span>
                     </label>
                     <input
                       id="email"
@@ -221,8 +248,8 @@ export default function ContactPage() {
 
                   {/* Company */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="company" className="text-[#F8FAFC] text-sm font-medium">
-                      Company <span className="text-[#F97316]">*</span>
+                    <label htmlFor="company" className="text-foreground text-sm font-medium">
+                      Company <span className="text-primary">*</span>
                     </label>
                     <input
                       id="company"
@@ -238,8 +265,8 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-[#F8FAFC] text-sm font-medium">
-                      Message <span className="text-[#F97316]">*</span>
+                    <label htmlFor="message" className="text-foreground text-sm font-medium">
+                      Message <span className="text-primary">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -253,16 +280,25 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {/* Error message */}
+                  {error && (
+                    <p role="alert" className="text-sm text-red-400">
+                      {error}
+                    </p>
+                  )}
+
                   {/* Submit */}
                   <button
                     type="submit"
+                    disabled={submitting}
                     className={cn(
                       'w-full rounded-lg px-6 py-3.5 font-semibold text-sm text-white',
-                      'bg-[#F97316] hover:bg-[#ea6a0a] active:bg-[#d45e08]',
-                      'transition-colors duration-200'
+                      'bg-primary hover:bg-[#ea6a0a] active:bg-[#d45e08]',
+                      'transition-colors duration-200',
+                      'disabled:opacity-60 disabled:cursor-not-allowed'
                     )}
                   >
-                    Send Message
+                    {submitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
@@ -270,6 +306,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

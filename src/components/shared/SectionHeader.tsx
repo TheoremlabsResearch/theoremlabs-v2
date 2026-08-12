@@ -21,15 +21,15 @@ export function SectionHeader({
       )}
     >
       {eyebrow && (
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#F97316]">
+        <span className="text-xs font-semibold uppercase tracking-widest text-primary">
           {eyebrow}
         </span>
       )}
-      <h2 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight sm:text-3xl md:text-4xl">
+      <h2 className="text-2xl font-semibold text-foreground tracking-tight sm:text-3xl md:text-4xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-base text-[#94A3B8] leading-relaxed max-w-2xl">{subtitle}</p>
+        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">{subtitle}</p>
       )}
     </div>
   );
