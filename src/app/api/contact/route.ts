@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const TO_EMAIL = 'imagine@theoremlabs.io';
+const TO_EMAIL = 'research@theoremlabs.io';
 
 interface ContactPayload {
   firstName: string;

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/shared/PageHero';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { CTAButton } from '@/components/shared/CTAButton';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Our Team | Theoremlabs',
@@ -15,6 +16,7 @@ interface TeamMember {
   title: string;
   bio: string;
   photo: string;
+  imageClassName?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -23,36 +25,42 @@ const teamMembers: TeamMember[] = [
     title: 'Co-Founder & Managing Partner',
     bio: 'Wendie brings decades of venture and operational experience to guide Theoremlabs\' portfolio companies from idea to market.',
     photo: '/images/team-wendie.png',
+    imageClassName: 'scale-110',
   },
   {
     name: 'Shantanu Wadodkar',
     title: 'Co-Founder & Managing Partner',
     bio: 'Shantanu combines deep technical expertise and entrepreneurial vision to shape Theoremlabs\' strategy and founder programs.',
     photo: '/images/team-shantanu.png',
+    imageClassName: 'scale-105',
   },
   {
     name: 'Prashant Sarode',
     title: 'Cofounder and AI Mentor in Residence',
     bio: 'Prashant leverages his background in applied AI to mentor founders building intelligent, production-ready systems.',
     photo: '/images/team-prashant.png',
+    imageClassName: 'scale-102',
   },
   {
     name: 'Will Storey',
     title: 'Co-Founder & Lab Mentor',
     bio: 'Will draws on hands-on startup experience to help Theoremlabs founders navigate growth, product, and team challenges.',
     photo: '/images/team-will.png',
+    imageClassName: 'scale-110',
   },
   {
     name: 'David Ward',
     title: 'Chief Revenue & Growth Officer',
     bio: 'David architects go-to-market strategies and revenue engines that help Theoremlabs and its companies scale efficiently.',
     photo: '/images/team-david.png',
+    imageClassName: 'scale-107 object-[55%_45%]',
   },
   {
     name: 'Jim Stevenson',
     title: 'Contributor',
     bio: 'Jim brings specialized domain knowledge and a broad network that enriches the Theoremlabs community and its portfolio.',
     photo: '/images/team-jim.png',
+    imageClassName: 'scale-130',
   },
 ];
 
@@ -74,16 +82,17 @@ export default function OurTeamPage() {
                 key={member.name}
                 className="bg-card border border-border rounded-xl overflow-hidden flex flex-col"
               >
-                <div className="relative w-full aspect-square">
-                  <Image
-                    src={member.photo}
-                    width={300}
-                    height={300}
-                    alt={member.name}
-                    className="w-full aspect-square object-cover object-top"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    loading="lazy"
-                  />
+                <div className="relative w-full aspect-square flex items-center justify-center p-8">
+                  <div className="relative h-full w-full rounded-full overflow-hidden">
+                    <Image
+                      src={member.photo}
+                      fill
+                      alt={member.name}
+                      className={cn('object-cover object-top', member.imageClassName)}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
                 <div className="p-5 flex flex-col gap-2 flex-1">
                   <p className="text-lg font-semibold text-foreground leading-snug">
