@@ -8,7 +8,12 @@ interface LogoProps {
 
 export function Logo({ className, priority = false }: LogoProps) {
   return (
-    <span className={cn('inline-flex items-center gap-2', className)}>
+    <span
+      className={cn(
+        'inline-flex items-center gap-2 rounded-lg bg-white px-3 py-1.5',
+        className
+      )}
+    >
       <Image
         src="/images/logo-white.png"
         alt=""
@@ -18,7 +23,7 @@ export function Logo({ className, priority = false }: LogoProps) {
         loading={priority ? undefined : 'lazy'}
         className="h-8 w-8 flex-shrink-0"
       />
-      <span className="text-lg font-bold tracking-tight text-foreground whitespace-nowrap">
+      <span className="text-lg font-bold tracking-tight text-black whitespace-nowrap">
         Theoremlabs.io
       </span>
     </span>
