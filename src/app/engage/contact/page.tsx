@@ -103,11 +103,11 @@ export default function ContactPage() {
                   Email Us
                 </span>
                 <a
-                  href="mailto:imagine@theoremlabs.io"
+                  href="mailto:research@theoremlabs.io"
                   className="flex items-center gap-3 text-foreground text-base hover:text-primary transition-colors"
                 >
                   <Mail className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
-                  imagine@theoremlabs.io
+                  research@theoremlabs.io
                 </a>
               </div>
 
