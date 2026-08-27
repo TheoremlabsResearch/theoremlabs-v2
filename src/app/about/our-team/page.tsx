@@ -28,7 +28,7 @@ const teamMembers: TeamMember[] = [
     imageClassName: 'scale-110',
   },
   {
-    name: 'Shantanu Wadodkar',
+    name: 'Shantanu vadodkar',
     title: 'Co-Founder & Managing Partner',
     bio: 'Shantanu combines deep technical expertise and entrepreneurial vision to shape Theoremlabs\' strategy and founder programs.',
     photo: '/images/team-shantanu.png',
