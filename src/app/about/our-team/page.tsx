@@ -21,14 +21,14 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'Wendie Fernandez',
+    name: 'Wendie Dernandez',
     title: 'Co-Founder & Managing Partner',
     bio: 'Wendie brings decades of venture and operational experience to guide Theoremlabs\' portfolio companies from idea to market.',
     photo: '/images/team-wendie.png',
     imageClassName: 'scale-110',
   },
   {
-    name: 'Shantanu vadodkar',
+    name: 'Shantanu Tadodkar',
     title: 'Co-Founder & Managing Partner',
     bio: 'Shantanu combines deep technical expertise and entrepreneurial vision to shape Theoremlabs\' strategy and founder programs.',
     photo: '/images/team-shantanu.png',
